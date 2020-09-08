@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.CouponRuleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.CouponRule">
+        <id column="id" property="id" />
+        <result column="rule_name" property="ruleName" />
+        <result column="coupon_name" property="couponName" />
+        <result column="extend_mode" property="extendMode" />
+        <result column="use_mode" property="useMode" />
+        <result column="present_min_val" property="presentMinVal" />
+        <result column="face_value" property="faceValue" />
+        <result column="face_rule" property="faceRule" />
+        <result column="issue_begin_date" property="issueBeginDate" />
+        <result column="issue_end_date" property="issueEndDate" />
+        <result column="valid_begin_date" property="validBeginDate" />
+        <result column="valid_end_date" property="validEndDate" />
+        <result column="valid_min_val" property="validMinVal" />
+        <result column="limit_ttl_qty" property="limitTtlQty" />
+        <result column="limit_per_qty" property="limitPerQty" />
+        <result column="issued_ttl_qty" property="issuedTtlQty" />
+        <result column="used_ttl_qty" property="usedTtlQty" />
+        <result column="num_prefix" property="numPrefix" />
+        <result column="remarks" property="remarks" />
+        <result column="if_open" property="ifOpen" />
+        <result column="status" property="status" />
+        <result column="type" property="type" />
+        <result column="createtime" property="createtime" />
+        <result column="oprtime" property="oprtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, rule_name AS ruleName, coupon_name AS couponName, extend_mode AS extendMode, 
+        use_mode AS useMode, present_min_val AS presentMinVal, face_value AS faceValue, 
+        face_rule AS faceRule, issue_begin_date AS issueBeginDate, issue_end_date AS issueEndDate, 
+        valid_begin_date AS validBeginDate, valid_end_date AS validEndDate, valid_min_val AS validMinVal, 
+        limit_ttl_qty AS limitTtlQty, limit_per_qty AS limitPerQty, issued_ttl_qty AS issuedTtlQty, 
+        used_ttl_qty AS usedTtlQty, num_prefix AS numPrefix, remarks, if_open AS ifOpen, status,type, createtime, oprtime
+    </sql>
+
+</mapper>

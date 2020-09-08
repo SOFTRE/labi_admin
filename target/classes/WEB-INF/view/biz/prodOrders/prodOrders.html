@@ -1,0 +1,45 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>订单管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="progress" name="订单状态">
+                                    <option value="">全部</option>
+                                    <option value="waitPay">待支付</option>
+                                    <option value="waitDelivery">待发货</option>
+                                    <option value="waitTake">待收货</option>
+                                    <option value="waitJudge">已完成</option>
+                                    <option value="canceled">已取消</option>
+                                </#SelectCon>
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="ProdOrders.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="ProdOrdersTableToolbar" role="group">
+                            @if(shiro.hasPermission("/prodOrders/deliver")){
+                                <#button name="发货" id="delivery_btn" icon="fa-edit" clickFun="ProdOrders.openProdOrdersDelivery()"/>
+                            @}
+                            @if(shiro.hasPermission("/prodOrders/dtl")){
+                                <#button name="订单详情" icon="fa-plus" clickFun="ProdOrders.openProdOrdersDetail()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="ProdOrdersTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/prodOrders/prodOrders.js"></script>
+@}

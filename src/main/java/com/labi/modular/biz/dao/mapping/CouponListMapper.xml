@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.CouponListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.CouponList">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="user_id" property="userName" />
+        <result column="rule_id" property="ruleId" />
+        <result column="coupon_name" property="couponName" />
+        <result column="extend_mode" property="extendMode" />
+        <result column="use_mode" property="useMode" />
+        <result column="ec_code" property="ecCode" />
+        <result column="face_value" property="faceValue" />
+        <result column="if_used" property="ifUsed" />
+        <result column="if_expired" property="ifExpired" />
+        <result column="valid_begin_date" property="validBeginDate" />
+        <result column="valid_end_date" property="validEndDate" />
+        <result column="valid_min_val" property="validMinVal" />
+        <result column="use_time" property="useTime" />
+        <result column="type" property="type" />
+        <result column="remarks" property="remarks" />
+        <result column="createtime" property="createtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id AS userId,user_name userName, rule_id AS ruleId, coupon_name AS couponName, 
+        extend_mode AS extendMode, use_mode AS useMode, ec_code AS ecCode, 
+        face_value AS faceValue, if_used AS ifUsed, if_expired AS ifExpired, 
+        valid_begin_date AS validBeginDate, valid_end_date AS validEndDate, 
+        valid_min_val AS validMinVal, use_time AS useTime, type,remarks, createtime
+    </sql>
+
+</mapper>

@@ -1,0 +1,42 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="productHotInfoForm">
+
+            <input type="hidden" id="id" value="${item.id}">
+			<input type="hidden" id="productId" value="${item.productId}">
+			<input type="hidden" id="name" value="">
+
+            <div class="row">
+            	<div class="form-group col-sm-12">
+	                <div class="col-sm-10">
+                        <#select id="productType" name="链接类型" underline="false">
+                            <option value="">请选择</option>
+                            <option value="news" ${item.productType=='news'?"selected='selected'":""}>新闻</option>
+                            <option value="coach" ${item.productType=='coach'?"selected='selected'":""}>教练</option>
+                            <option value="product" ${item.productType=='product'?"selected='selected'":""}>商品</option>
+                            <option value="course" ${item.productType=='course'?"selected='selected'":""}>课程</option>
+                            <option value="video" ${item.productType=='video'?"selected='selected'":""}>网上课程</option>
+                        </#select>
+                        <#inputSearch id="Keyword" name="查询关键字" value="${item.name}" clickFun="ProductHotInfoDlg.jumpSearch()" underline="false" placeholder="请输入关键字检索"/>
+                        <#select id="gotoInfo" name="链接产品" underline="false" >
+                            <option value="${item.productId}" selected="selected">${item.name}</option>
+                        </#select>
+
+                        <#input id="seqNum" name="热推排序" underline="false" value="${item.seqNum}" maxLength="3"/>
+	                </div>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ProductHotInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ProductHotInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/product/hot/product_hot_info.js"></script>
+@}

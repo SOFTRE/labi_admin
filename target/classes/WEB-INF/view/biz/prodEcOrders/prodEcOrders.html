@@ -1,0 +1,57 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>退货问题管理列表</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-1 search-title">
+                                <label class="search-title-label">
+                                    筛选条件：
+                                </label>
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="orderNo" name="订单号" />
+                            </div> 
+                            <div class="col-sm-2">
+                                <#NameCon id="userName" name="用户名" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="logisticsNo" name="物流单号" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="progress" name="状态">
+                                	<option value="">全部</option>
+		                            <option value="waitReview">待审核</option>
+		                            <option value="waitDelivery">等待买家发货</option>
+		                            <option value="waitTake">待收货</option>
+		                            <option value="refuse">拒绝</option>
+                                    <option value="canceled">已取消</option>
+                                    <option value="finish">已完成</option>
+                            	</#SelectCon>
+                            </div> 
+                            <div class="col-sm-2">
+                                <#button name="搜索" icon="fa-search" clickFun="ProdEcOrders.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="ProdEcOrdersTableToolbar" role="group">
+                            @if(shiro.hasPermission("/prodEcOrders/update")){
+                                <#button name="退款审核" icon="fa-edit" clickFun="ProdEcOrders.openProdEcOrdersDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/prodEcOrders/complete")){
+                                <#button name="完成退款" icon="fa-edit" clickFun="ProdEcOrders.complete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="ProdEcOrdersTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/prodEcOrders/prodEcOreders.js"></script>
+@}

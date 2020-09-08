@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="labi_admin:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>labi_admin</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="labi_admin-1.0.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="labi_admin:war exploded" />
+    </root>
+  </artifact>
+</component>

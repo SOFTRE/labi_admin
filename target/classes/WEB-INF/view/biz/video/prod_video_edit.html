@@ -1,0 +1,26 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="showInfoForm">
+            <input type="hidden" id="id" value="${item.id}">
+            <div class="row">
+                <div class="col-sm-12">
+                    <#input id="name" name="视频名称" value="${item.name}" underline="false"/>
+                    <#input id="seqNum" value="${item.seqNum}" type="number" name="排序" underline="false"/>
+                    <#video videoId="videoFile" imgId="coverFile" videoSizeId="videoSize" underline="false" videoUrl="${item.videoFile}" imgUrl="${item.coverFile}" videoSize="${item.videoSize}"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ProductInfoDlg.editProdVideoSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ProductInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="//imgcache.qq.com/open/qcloud/js/vod/sdk/ugcUploader.js"></script>
+<script src="${ctxPath}/static/modular/biz/video/video_info.js"></script>
+@}

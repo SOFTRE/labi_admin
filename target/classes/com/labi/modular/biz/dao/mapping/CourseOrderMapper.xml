@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.CourseOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.CourseOrder">
+        <id column="id" property="id" />
+        <result column="order_no" property="orderNo" />
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="sex" property="sex" />
+        <result column="phone_num" property="phoneNum" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="area" property="area" />
+        <result column="address_detail" property="addressDetail" />
+        <result column="job" property="job" />
+        <result column="ref_phone_num" property="refPhoneNum" />
+        <result column="ref_name" property="refName" />
+        <result column="ref_class_name" property="refClassName" />
+
+        <result column="course_name" property="courseName" />
+        <result column="course_des" property="courseDes" />
+        <result column="course_img" property="courseImg" />
+        <result column="listen_time" property="listenTime" />
+        <result column="course_id" property="courseId" />
+        <result column="adjust_listen_time" property="adjustListenTime" />
+        <result column="course_cat_id" property="courseCatId" />
+        <result column="course_cat_name" property="courseCatName" />
+        <result column="class_id" property="classId" />
+        <result column="class_name" property="className" />
+        <result column="total_price" property="totalPrice" />
+        <result column="progress" property="progress" />
+        <result column="pay_way" property="payWay" />
+        <result column="remarks" property="remarks" />
+        <result column="type" property="type" />
+        <result column="createtime" property="createtime" />
+        <result column="oprtime" property="oprtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, order_no AS orderNo, user_id AS userId, user_name AS userName, 
+        sex,phone_num AS phoneNum,province,city,area,address_detail AS addressDetail,
+        industry,job,ref_phone_num AS refPhoneNum,ref_name AS refName,ref_class_name AS refClassName,
+        course_name AS courseName, course_id AS courseId,
+        course_des AS courseDes, course_img AS courseImg, listen_time AS listenTime, 
+        adjust_listen_time AS adjustListenTime, 
+        course_cat_id AS courseCatId,class_id AS classId,class_name AS className, course_cat_name AS courseCatName, 
+        total_price AS totalPrice, progress, pay_way AS payWay, 
+        type, remarks, createtime, oprtime
+    </sql>
+
+</mapper>

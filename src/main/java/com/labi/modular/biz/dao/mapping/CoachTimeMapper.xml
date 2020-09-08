@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.CoachTimeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.CoachTime">
+        <id column="id" property="id" />
+        <id column="coach_id" property="coachId" />
+        <id column="start_time" property="startTime" />
+        <id column="end_time" property="endTime" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, coach_id AS coachId,type, start_time AS startTime, end_time AS endTime, create_time AS createTime
+    </sql>
+
+	<select id="getCoachTimeListByName" resultType="java.util.Map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+		select 
+		t.id, t.coach_id coachId,t.start_time startTime,t.end_time  endTime, 
+		c.name coachName, c.coach_grade_name coachGradeName,c.type
+		from biz_coach_time t 
+		LEFT JOIN biz_coach c on t.coach_id= c.id 
+		where c.if_frozen='F' 
+		<if test="type != null and type !=''">
+		and c.type=#{type}
+		</if>
+		<if test="coachName != null and coachName !=''">
+			and c.name like CONCAT('%',#{coachName},'%')
+		</if>
+		group by t.coach_id
+	</select>
+</mapper>

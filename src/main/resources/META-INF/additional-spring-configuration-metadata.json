@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "labi.session-invalidate-time",
+      "type": "java.lang.String",
+      "description": "Description for labi.session-invalidate-time."
+  }
+] }

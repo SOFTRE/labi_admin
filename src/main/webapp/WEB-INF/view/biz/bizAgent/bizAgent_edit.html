@@ -1,0 +1,28 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="bizAgentInfoForm">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <#input id="agentName" name="分销商名称" value="${item.agentName}" underline="false"/>
+                <#input id="bankName" name="银行名称" value="${item.bankName}" underline="false"/>
+                <#input id="bankSubname" name="支行" value="${item.bankSubname}" underline="false"/>
+                <#input id="bankNo" name="银行卡号" value="${item.bankNo}" underline="false"/>
+                <#input id="beginDate" name="合约开始时间" value="${item.beginDate}" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"  underline="false"/>
+                <#input id="endDate" name="合约结束时间" value="${item.endDate}" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"  underline="false"/>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="BizAgentInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="BizAgentInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/bizAgent/bizAgent_info.js"></script>
+@}

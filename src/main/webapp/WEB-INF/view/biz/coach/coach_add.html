@@ -1,0 +1,53 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="coachInfoForm">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-10">
+                    <#input id="userId" name="" value="" type="hidden"/>
+                    <#input id="selUserId" hidden="selId" readonly="readonly" name="选择教练" placeholder="教练选择" clickFun="CoachInfoDlg.chooseUser()" underline="false"/>
+                    <#input id="name" hidden="name"  name="教练姓名" placeholder="教练姓名" underline="false" maxLength="20"/>
+                    <#select id="coachLeve" name="教练等级" hidden="coachGradeId" underline="false">
+                        <option value="">请选择</option>
+                        @for(grades in gradeslist){
+                            <option value="${grades.id}">${grades.name}</option>
+                        @}
+                    </#select>
+                    <#select id="coachCatLeve" name="教练分类" hidden="coachCatId" underline="false">
+                        <option value="">请选择</option>
+                        @for(coachCat in coachcatlist){
+                            <option value="${coachCat.id}">${coachCat.name}</option>
+                        @}
+                    </#select>
+                    <#input id="price" name="价格" underline="false" maxLength="7"/>
+                    <#input id="telephone" name="内部电话" underline="false" maxLength="11"/>
+                    <#input id="seqNum" name="教练排序" underline="false" maxLength="3"/>
+                    <#input id="des" name="教练简介" underline="false" maxLength="500"/>
+                    <#radio name="redFrozenioCheck" title="是否冻结" hidden="ifFrozen" underline="false" checked="F" />
+                    <#radio name="redRecommendCheck" title="是否推荐" hidden="ifRecommend" underline="false" checked="F" />
+                    <#avatar id="img" name="教练缩略图" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸320px*234px)"/>
+                    <#moreImg id="moreImg" name="更多图片" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸750px*560px)"/>
+
+                    <#ueditor id="info" name="教练详情"/>
+                </div>
+
+                
+            </div>
+
+                
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CoachInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CoachInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="//imgcache.qq.com/open/qcloud/js/vod/sdk/ugcUploader.js"></script>
+<script src="${ctxPath}/static/modular/biz/coach/coach_info.js"></script>
+@}

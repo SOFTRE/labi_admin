@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.ProductMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.Product">
+        <id column="id" property="id" />
+        <result column="cat_id" property="catId" />
+        <result column="cat_name" property="catName" />
+        <result column="name" property="name" />
+        <result column="thumb_img" property="thumbImg" />
+        <result column="more_img" property="moreImg" />
+        <result column="exhibition_attr" property="exhibitionAttr" />
+        <result column="des_file" property="desFile" />
+        <result column="sale_num" property="saleNum" />
+        <result column="if_video" property="ifVideo" />
+        <result column="if_recommend" property="ifRecommend" />
+        <result column="recommend_img" property="recommendImg" />
+        <result column="if_shelf" property="ifShelf" />
+        <result column="status" property="status" />
+        <result column="type" property="type" />
+        <result column="seq_num" property="seqNum" />
+        <result column="createtime" property="createtime" />
+        <result column="oprtime" property="oprtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, cat_id AS catId, cat_name AS catName, name, thumb_img AS thumbImg, more_img AS moreImg, 
+        exhibition_attr AS exhibitionAttr, des_file AS desFile, sale_num AS saleNum, 
+        if_video AS ifVideo, if_recommend AS ifRecommend, recommend_img AS recommendImg, 
+        if_shelf AS ifShelf,status,type, seq_num AS seqNum, createtime, oprtime
+    </sql>
+
+    <update id="deleteBatchByIds">
+        update biz_product set status='D' where instr(#{ids},concat(",",id,","))>0
+    </update>
+    <update id="updateVideoCatNameByCatId">
+      UPDATE biz_product SET cat_name=#{catName} WHERE cat_id=#{catId} and if_video='T'
+    </update>
+    <update id="updateProdCatNameByCatId">
+        UPDATE biz_product SET cat_name=#{catName} WHERE cat_id=#{catId} and if_video='F'
+    </update>
+
+</mapper>

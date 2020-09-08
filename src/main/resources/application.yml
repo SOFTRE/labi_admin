@@ -1,0 +1,145 @@
+##########################################################
+##################  所有profile共有的配置  #################
+##########################################################
+
+###################  labi配置  ###################
+labi:
+  swagger-open: true #是否开启swagger (true/false)
+  kaptcha-open: false #是否开启登录时验证码 (true/false)
+  session-open: false #是否开启session超时验证（受影响的类SessionTimeoutInterceptor） (true/false)
+  file-upload-path: e:/tmp  #文件上传目录(不配置的话为java.io.tmpdir目录)
+  muti-datasource-open: false #是否开启多数据源(true/false)
+  spring-session-open: false #是否开启spring session,如果是多机环境需要开启(true/false)
+  session-invalidate-time: 10800 #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
+  session-validation-interval: 900 #多久检测一次失效的session(只在单机环境下生效) 单位：秒
+
+###################  项目启动端口  ###################
+server:
+  port: 80
+  context-path: /admin
+
+###################  beetl配置  ###################
+beetl:
+  delimiter-statement-start: \@   #开始结束标签(yaml不允许@开头)
+  delimiter-statement-end: null
+  resource-tagroot: common/tags   #自定义标签文件Root目录和后缀
+  resource-tagsuffix: tag
+  resource-auto-check: false #是否检测文件变化,开发用true合适，但线上要改为false
+  webapp-ext : com.labi.core.beetl.GlobalExt
+
+
+###################  spring配置  ###################
+spring:
+  profiles:
+    active: dev
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: /WEB-INF/view
+  http:
+    converters:
+      preferred-json-mapper: fastjson
+    multipart:
+      max-request-size: 100MB #最大请求大小
+      max-file-size: 100MB #最大文件大小
+  devtools:
+    restart:
+      enabled: false #是否开启开发者工具（true/false）
+      additional-paths: src/main/java
+      exclude: static/**,WEB-INF/view/**
+
+###################  mybatis-plus配置  ###################
+mybatis-plus:
+  mapper-locations: classpath*:com/labi/**/mapping/*.xml
+  typeAliasesPackage: com.labi.common.persistence.model
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+###################  腾讯云配置  ###################
+cloud:
+  appId: 1256683344
+  secret-id: AKID0VOB3nNhttthJjzwkNp59GlMyb9YxofQ
+  secret-key: uiBT4Zt0veBvUvARJIE1hD5russiMo6E
+
+  #file文件存储bucket
+  bucket-file: file-1256683344
+  bucket-file-url: https://file-1256683344.cosbj.myqcloud.com/
+  bucket-file-region: ap-beijing
+
+  #img上传存储bucket
+  bucket-img: img-1256683344
+  bucket-img-url: https://img-1256683344.cosbj.myqcloud.com/
+  bucket-img-region: ap-beijing
+
+  #video上传存储bucket
+  bucket-video: video-1256683344
+  bucket-video-url: https://video-1256683344.coscd.myqcloud.com/
+  bucket-video-region: ap-chengdu
+---
+
+##########################################################
+###################  开发环境的profile  ###################
+##########################################################
+spring:
+  profiles: dev
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 5000
+    poolMaxTotal: 1000   #最大连接池
+    poolMaxIdle: 100    #最大休闲连接
+    poolMaxWait: 10
+  datasource:
+      url: jdbc:mysql://127.0.0.1:3306/labi?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: 123456
+      filters: log4j,wall,mergeStat
+
+#多数据源
+#biz:
+#  datasource:
+#    url: jdbc:mysql://127.0.0.1:3306/biz?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+#    username: root
+#    password: root
+
+logging:
+  level.root: info
+  level.com.labi: debug
+  path: logs/
+  file: labi.log
+
+---
+
+##########################################################
+###################  正式环境的profile  ###################
+##########################################################
+spring:
+  profiles: produce
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: Labi#Redis888!
+    timeout: 5000
+    poolMaxTotal: 1000   #最大连接池
+    poolMaxIdle: 100    #最大休闲连接
+    poolMaxWait: 10
+  datasource:
+      url: jdbc:mysql://127.0.0.1:3306/labi?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: Labi#DB666!~
+      filters: log4j,wall,mergeStat
+
+logging:
+  level.root: info
+  path: logs/
+  file: labi.log
+

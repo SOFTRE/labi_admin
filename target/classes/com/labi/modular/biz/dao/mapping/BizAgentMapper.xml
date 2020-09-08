@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.BizAgentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.BizAgent">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="agent_name" property="agentName" />
+        <result column="begin_date" property="beginDate" />
+        <result column="end_date" property="endDate" />
+        <result column="balance" property="balance" />
+        <result column="total_balance" property="totalBalance" />
+        <result column="total_sub_user" property="totalSubUser" />
+        <result column="total_order" property="totalOrder" />
+        <result column="if_frozen" property="ifFrozen" />
+        <result column="createtime" property="createtime" />
+        <result column="oprtime" property="oprtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id AS userId, agent_name AS agentName,begin_date beginDate,end_date endDate, 
+        balance, total_balance AS totalBalance, total_sub_user AS totalSubUser, total_order AS totalOrder,
+        createtime, oprtime
+    </sql>
+    <select id="selectAllByPage" resultType="java.util.Map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+        select a.id, user_id AS userId, a.agent_name AS agentName, a.balance, a.total_balance AS totalBalance, 
+        a.total_sub_user AS totalSubUser,a.if_frozen ifFrozen, a.createtime, a.oprtime,
+        a.progress,a.begin_date beginDate,a.end_date endDate,u.phone_num phoneNum,u.bank_no bankNo,
+        u.bank_name bankName,u.bank_subname bankSubname
+        from biz_agent a
+        left join biz_user u on a.user_id=u.id where 1=1
+        <if test="progress != null and progress !=''">
+            and a.progress=#{progress}
+        </if>
+        <if test="beginDate != null and beginDate !=''">
+            and a.begin_date &gt;= #{beginDate}
+        </if>
+        <if test="endDate != null and endDate !=''">
+            and a.end_date &lt;= #{endDate}
+        </if>
+        <if test="condition != null and condition !=''">
+            and (instr(a.agent_name,#{condition})>0 or instr(u.phone_num,#{condition})>0)
+        </if>
+        order by a.createtime desc
+    </select>
+    <select id="selectById" resultType="com.labi.modular.biz.model.BizAgent" >
+        select a.id, user_id AS userId, a.agent_name AS agentName, a.balance, a.total_balance AS totalBalance, a.total_order AS totalOrder,
+        a.total_sub_user AS totalSubUser,a.if_frozen ifFrozen, a.createtime, a.oprtime,
+        a.progress,a.begin_date beginDate,a.end_date endDate,u.phone_num phoneNum,u.bank_no bankNo,
+        u.bank_name bankName,u.bank_subname bankSubname
+        from biz_agent a
+        left join biz_user u on a.user_id=u.id
+        where a.id=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,48 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="couresInfoForm">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-10">
+                            <#input id="name" name="课程名称" value="${item.name}" underline="false" maxLength="20"/>
+                            <#input id="des" name="课程简介" value="${item.des}" underline="false" maxLength="200"/>
+                            <#avatar id="img" name="课程图片" underline="false" avatarImg="${item.img}" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸180px*140px)"/>
+                            <#moreImg id="moreImg" name="更多图片" moreImg="${item.moreImg}" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸750px*560px)"/>
+
+                            <#input id="classPrefix" name="班级前缀名" value="${item.classPrefix}" underline="false" maxLength="20"/>
+                            <input id="courseCatName" name="courseCatName" value="" type="hidden"/>
+                            <#select id="courseCatLeve" name="课程分类" hidden="courseCatId" underline="false">
+                                <option value="" data-id="${item.courseCatId}">请选择</option>
+                                @for(courseCat in coursecatlist){
+									<option value="${courseCat.id}">${courseCat.name}</option>
+								@}
+                            </#select>
+                            
+                            <#input id="price" name="课程价格(元)" value="${item.price}" underline="false" maxLength="9"/>
+                            <#input id="seqNum" name="课程排序" value="${item.seqNum}" underline="false" maxLength="3"/>
+                            <#input id="maxNum" name="最大报名数" value="${item.maxNum}" underline="false" maxLength="3"/>
+                            <#radio name="redioIfRecommendCheck" title="是否推荐" hidden="ifRecommend" underline="false" checked="${item.ifRecommend}" />
+                            <#radio name="redioIfShelfCheck" title="是否上架" hidden="ifShelf" underline="false" checked="${item.ifShelf}" />
+                            
+                             <#ueditor id="info" name="课程详情"/>
+                             
+                </div>
+ 
+            	
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CourseInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CourseInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/course/course_info.js"></script>
+@}

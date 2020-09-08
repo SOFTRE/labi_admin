@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.LProductCatMapper">
+
+    <insert id="saveProdCat">
+        INSERT ignore `labi`.`biz_prod_cat`
+        ( `cat_name`,`img`,`parent_id`,`root_id`, `depth`, `path`,`seq_num`, `status`,`createtime`)
+        VALUES
+        (#{catName} , #{img},#{parentId},#{rootId} , #{depth} , #{path} ,  #{seqNum},#{status} , #{createtime});
+    </insert>
+
+    <update id="updateProdCat">
+        UPDATE `labi`.`biz_prod_cat` SET `cat_name` = #{catName} , `img` = #{img} , `parent_id` = #{parentId} , `root_id` = #{rootId} , `depth` = #{depth} , `seq_num` = #{seqNum} WHERE id = #{id}
+    </update>
+    <delete id="deleteProdById">
+        UPDATE `labi`.`biz_prod_cat` SET `status` = 'D' WHERE id = #{id}
+    </delete>
+
+
+    <select id="findProductCatList" resultType="com.labi.modular.biz.model.ProdCat">
+        select
+        t.cat_name,
+        t.img,
+        t.recommend_img,
+        t.recommend_prod_id,
+        t.recommend_prod_name,
+        t.recommend_home_img,
+        t.recommend_home_prod_id,
+        t.recommend_home_prod_name,
+        t.parent_id,
+        t.root_id,
+        t.depth,
+        t.type,
+        t.path,
+        t.if_recommend,
+        t.if_home_recommend,
+        t.seq_num,
+        t.status,
+        t.createtime,
+        t.oprtime
+        from  `labi`.`biz_prod_cat` t
+        where 1 = 1
+
+        <if test=" parentId != null ">
+            and t.parent_id = #{parentId}
+        </if>
+
+        <if test=" status != null ">
+            and t.status = #{status}
+        </if>
+
+        order by t.createtime desc
+
+    </select>
+
+
+
+</mapper>

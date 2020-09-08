@@ -1,0 +1,42 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="productHotInfoForm">
+            <input type="hidden" id="id" value="">
+            <input type="hidden" id="productId" value="">
+            <input type="hidden" id="name" value="">
+            <div class="row">
+                <div class="col-sm-10">
+                    <!--
+                    <#input id="productName" hidden="productId" name="热推商品" readonly="readonly" clickFun="ProductHotInfoDlg.chooseProduct()" underline="false" placeholder="点击选择热推商品"/>
+                    -->
+                    <#select id="productType" name="链接类型" underline="false">
+                        <option value="">请选择</option>
+                        <option value="news">新闻</option>
+                        <option value="coach">教练</option>
+                        <option value="product">商品</option>
+                        <option value="course">课程</option>
+                        <option value="video">网上课程</option>
+                    </#select>
+                    <#inputSearch id="Keyword" name="查询关键字" clickFun="ProductHotInfoDlg.jumpSearch()" underline="false" placeholder="请输入关键字检索"/>
+                    <#select id="gotoInfo" name="链接产品" underline="false" >
+                        <option value="">请选择</option>
+                    </#select>
+                    <#input id="seqNum" name="热推排序" underline="false" maxLength="3"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row btn-group-m-t">
+        <div class="col-sm-12 col-sm-offset-5">
+            <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ProductHotInfoDlg.addSubmit()"/>
+            <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ProductHotInfoDlg.close()"/>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+<script src="${ctxPath}/static/modular/biz/product/hot/product_hot_info.js"></script>
+@}

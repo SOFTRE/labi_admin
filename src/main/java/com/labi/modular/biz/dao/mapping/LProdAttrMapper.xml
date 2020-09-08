@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.LProductAttrMapper">
+
+    <insert id="saveAttr">
+         INSERT INTO `labi`.`biz_prod_attr` (`prod_id`, `attr_id`, `attr_name`, `attr_option_id`, `option_name`, `status`, `createtime`)
+         VALUES
+         (#{prodId}, #{attrId}, #{attrName}, #{attrOptionId}, #{optionName}, #{status}, #{createtime});
+    </insert>
+
+    <select id="findAttrsByProdId" resultType="com.labi.modular.biz.model.ProdAttr">
+        SELECT `id`, `prod_id`, `attr_id`, `attr_name`, `attr_option_id`, `option_name`, `status`, `createtime`
+        FROM `labi`.`biz_prod_attr`
+        WHERE  `prod_id` = #{prodId} and `status` = 'A' order by `createtime` desc ;
+    </select>
+
+
+</mapper>

@@ -1,0 +1,51 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>会员管理管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-1 search-title">
+                                <label class="search-title-label">
+                                    筛选条件：
+                                </label>
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="condition" name="昵称/手机号" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="ifCoach" name="是否教练">
+                                    <option value="">全部</option>
+                                    <option value="T">是</option>
+                                    <option value="F">否</option>
+                                </#SelectCon>
+                            </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="agentStatus" name="是否分销商">
+                                    <option value="">全部</option>
+                                    <option value="T">是</option>
+                                    <option value="F">否</option>
+                                </#SelectCon>
+                            </div>
+                            <div class="col-sm-2">
+                                <#button name="搜索" icon="fa-search" clickFun="User.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="UserTableToolbar" role="group">
+                            @if(shiro.hasPermission("/user/userdtl")){
+                                <#button name="详情" icon="fa-info" clickFun="User.openUserDetail()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="UserTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/user/user.js"></script>
+@}

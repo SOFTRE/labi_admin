@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.TipMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.Tip">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="code" property="code"/>
+        <result column="des_file" property="desFile"/>
+        <result column="createtime" property="createtime"/>
+        <result column="oprtime" property="oprtime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, title, code, des_file desFile, createtime, oprtime
+    </sql>
+
+</mapper>

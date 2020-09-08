@@ -1,0 +1,58 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>分销商管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-1 search-title">
+                                <label class="search-title-label">
+                                    筛选条件：
+                                </label>
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#TimeCon id="beginDate" name="开始时间" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#TimeCon id="endDate" name="结束时间" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#button name="搜索" icon="fa-search" clickFun="BizAgent.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="BizAgentTableToolbar" role="group">
+                            @if(shiro.hasPermission("/bizAgent/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="BizAgent.openAddBizAgent()"/>
+                            @}
+                            @if(shiro.hasPermission("/bizAgent/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="BizAgent.openBizAgentDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/bizAgent/frozen")){
+                                <#button name="冻结" id="frozen_btn" icon="fa-remove" clickFun="BizAgent.frozen('T')" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/bizAgent/frozen")){
+                                <#button name="解冻" id="no_frozen_btn" icon="fa-heart" clickFun="BizAgent.frozen('F')" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/bizAgent/usernexus")){
+                                <#button name="查看下级" icon="fa-user" clickFun="BizAgent.openUserNexus()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/bizAgent/moneyRecord")){
+                                <#button name="收支明细" icon="fa-money" clickFun="BizAgent.openMoneyRecord()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="BizAgentTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/bizAgent/bizAgent.js"></script>
+@}

@@ -1,0 +1,66 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal"  id="bannerInfoForm">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-10">
+                            <#input id="name" name="名称" underline="false" placeholder="首页-顶部"/>
+                            
+                             <#select id="position" name="所属模块" underline="false">
+                                <option value="">请选择</option>
+	                            <option value="1">首页</option>
+	                            <option value="2">课程报名</option>
+	                            <option value="3">预约教练</option>
+	                            <option value="4">拉比展示</option>
+	                            <option value="5">在线直播</option>
+                            </#select>
+                            
+                            <#select id="type" name="类型" underline="false">
+                                <option value="">请选择</option>
+	                            <option value="coach">教练</option>
+	                            <option value="product">商品</option>
+	                            <option value="course">课程</option>
+	                            <option value="video">视频课程</option>
+                            </#select>
+                           
+                           <!--  
+                            <#input id="Keyword" name="查询关键字" underline="false"/>
+                            <#button name="搜索" icon="fa-search" clickFun="BannerInfoDlg.jumpSearch()"/>
+                            -->
+                            
+                            <#inputSearch id="Keyword" name="查询关键字" clickFun="BannerInfoDlg.jumpSearch()" underline="false" placeholder="请输入关键字检索"/>
+                            
+                            <#select id="gotoInfo" name="详情数据" underline="false" >
+                            <option value="">请选择</option>
+                            </#select>
+                            
+                            <#select id="indexes" name="banner位置" underline="false">
+                                <option value="">请选择</option>
+	                            <option value="1">顶部</option>
+	                            <option value="2">最新课程</option>
+	                            <option value="3">最新书籍</option>
+	                            <option value="4">经典个案</option>
+                            </#select>
+                            
+                            <#input id="seqNum" name="排序" underline="false"/>
+                            <#radio name="redioCheck" title="是否上线" hidden="ifOnline" underline="false" checked="F" />
+                            <#avatar id="img" name="图片" underline="false"/>
+                </div>
+
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="BannerInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="BannerInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/banner/banner_info.js"></script>
+@}

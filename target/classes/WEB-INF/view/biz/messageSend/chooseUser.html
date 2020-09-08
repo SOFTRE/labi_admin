@@ -1,0 +1,43 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>短信发送用户搜索</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-1 search-title">
+                                <label class="search-title-label">
+                                    筛选条件：
+                                </label>
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="condition" name="姓名/电话" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#button name="搜索" icon="fa-search" clickFun="User.search()"/>
+                            </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="sendMode" name="发送模板" hidden="templateId">
+	                                <option value="">请选择</option>
+		                             @for(msg in meslist){
+										<option value="${msg.templateId}">${msg.title}</option>
+									@}
+                            </#SelectCon>
+                            </div>
+                            <div class="col-sm-2">
+                                <#button name="短信发送" icon="fa-search" clickFun="User.userSendAlone()"/>
+                            </div>
+                        </div>
+                        <#table id="UserTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/messageSend/chooseUser.js"></script>
+@}

@@ -1,0 +1,32 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5></h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="学员姓名" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="Evaluate.search()"/>
+                            </div>
+                        </div>
+                        <!--  
+                        <div class="hidden-xs" id="UserTableToolbar" role="group">
+                            <#button name="确定" icon="fa-check" clickFun="User.choose()"/>
+                        </div>
+                        -->
+                        <#table id="evaluateTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/coach/evaluate.js"></script>
+@}

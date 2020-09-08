@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.ProdVideoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.ProdVideo">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="prod_id" property="prodId" />
+        <result column="video_file" property="videoFile" />
+        <result column="video_size" property="videoSize" />
+        <result column="cover_file" property="coverFile" />
+        <result column="seq_num" property="seqNum" />
+        <result column="status" property="status" />
+        <result column="createtime" property="createtime" />
+        <result column="oprtime" property="oprtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, img, prod_id AS prodId, video_file AS videoFile, cover_file AS coverFile, seq_num AS seqNum, createtime, oprtime
+    </sql>
+
+</mapper>

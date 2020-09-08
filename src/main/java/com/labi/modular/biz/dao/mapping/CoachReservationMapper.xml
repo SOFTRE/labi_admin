@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.CoachReservationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.CoachReservation">
+        <id column="id" property="id" />
+        <result column="order_id" property="orderId" />
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="coach_id" property="coachId" />
+        <result column="coach_name" property="coachName" />
+        <result column="coach_img" property="coachImg" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="judge_level" property="judgeLevel" />
+        <result column="feedback_content" property="feedbackContent" />
+        <result column="if_finish" property="ifFinish" />
+        <result column="if_feedback" property="ifFeedback" />
+        <result column="if_cancel" property="ifCancel" />
+        <result column="type" property="type" />
+        <result column="createtime" property="createtime" />
+        <result column="oprtime" property="oprtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, order_id AS orderId, user_id AS userId, user_name AS userName, 
+        coach_id AS coachId, coach_name AS coachName, coach_img AS coachImg,
+        start_time AS startTime,end_time AS endTime,if_cancel AS ifCancel,
+        judge_level AS judgeLevel, feedback_content AS feedbackContent,type, 
+        if_finish AS ifFinish, if_feedback AS ifFeedback, createtime, oprtime
+    </sql>
+
+<!-- 该教练下所预约的学员 -->
+<select id="selectCoachStudentList" resultType="map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+	select  
+		<include refid="Base_Column_List" />
+		from biz_coach_reservation where 1=1
+		<if test="type != null and type !=''">
+            and type=#{type}
+        </if>
+		<if test="coachName != null and coachName !=''">
+			and coach_name like '%${coachName}%'
+		</if>
+		group by user_id
+</select>
+</mapper>

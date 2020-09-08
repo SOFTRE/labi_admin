@@ -1,0 +1,61 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>优惠券管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-1 search-title">
+                                <label class="search-title-label">
+                                    筛选条件：
+                                </label>
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="优惠券名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="extendMode" name="赠送方式">
+	                                <option value="">请选择</option>
+		                            <option value="product">商城消费赠送</option>
+		                            <option value="coach">预约教练赠送</option>
+		                            <option value="course">课程报名赠送</option>
+                            	</#SelectCon>
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="useMode" name="使用方式">
+	                                <option value="">请选择</option>
+		                            <option value="all">通用</option>
+		                            <option value="product">商城消费</option>
+		                            <option value="coach">预约教练</option>
+		                            <option value="course">课程报名</option>
+                            	</#SelectCon>
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                <#button name="搜索" icon="fa-search" clickFun="CouponRule.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="CouponRuleTableToolbar" role="group">
+                            @if(shiro.hasPermission("/couponRule/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="CouponRule.openAddCouponRule()"/>
+                            @}
+                            @if(shiro.hasPermission("/couponRule/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="CouponRule.openCouponRuleDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/couponRule/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="CouponRule.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="CouponRuleTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/couponRule/couponRule.js"></script>
+@}

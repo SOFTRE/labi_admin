@@ -1,0 +1,37 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="CoachGradeInfoForm">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-10">
+                    <#input id="name" name="等级名称" value="${item.name}" underline="false"/>
+                    <#input id="title" name="标题"  value="${item.title}" underline="false"/>
+                    <#avatar id="img" name="等级缩略图" avatarImg="${item.img}" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸180px*140px)"/>
+                    <#input id="price" name="价格" value="${item.price}" underline="false" maxLength="7"/>
+                    <#input id="coachNum" name="可预约次数" value="${item.coachNum}" maxLength="3" underline="false"/>
+
+                    <#input id="seqNum" name="排序" value="${item.seqNum}" maxLength="3"/>
+                    <#input id="des" value="${item.des}" name="描述"/>
+                    <#ueditor id="info" name="等级详情"/>
+                    <!--
+                    <#avatar id="img" name="图片" avatarImg="${item.img}" underline="false"/>
+                    <#moreImg id="moreImg" name="更多图片" moreImg="${item.moreImg}" underline="false"/> -->
+                </div>
+				 
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CoachGradeInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CoachGradeInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/coachGrade/coachGrade_info.js"></script>
+@}

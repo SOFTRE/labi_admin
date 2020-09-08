@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.BizUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.BizUser">
+        <id column="id" property="id" />
+        <result column="head_img" property="headImg" />
+        <result column="name" property="name" />
+        <result column="sex" property="sex" />
+        <result column="birthday" property="birthday" />
+        <result column="phone_num" property="phoneNum" />
+        <result column="password" property="password" />
+        <result column="salt" property="salt" />
+        <result column="if_coach" property="ifCoach" />
+        <result column="agent_status" property="agentStatus" />
+        <result column="ref_user_id" property="refUserId" />
+        <result column="root_user_id" property="rootUserId" />
+        <result column="real_name" property="realName" />
+        <result column="card_id" property="cardId" />
+        <result column="bank_no" property="bankNo" />
+        <result column="type" property="type" />
+        <result column="bank_name" property="bankName" />
+        <result column="bank_subname" property="bankSubname" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="area" property="area" />
+        <result column="address_detail" property="addressDetail" />
+        <result column="openid" property="openid" />
+        <result column="if_frozen" property="ifFrozen" />
+        <result column="createtime" property="createtime" />
+        <result column="oprtime" property="oprtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, head_img AS headImg, name, sex, birthday, phone_num AS phoneNum, 
+        password, salt, if_coach AS ifCoach, agent_status AS agentStatus, ref_user_id AS refUserId,
+        root_user_id AS rootUserId, real_name AS realName, card_id AS cardId, bank_no AS bankNo, 
+        bank_name AS bankName, bank_subname AS bankSubname, province, city, area, type,
+        address_detail AS addressDetail, openid, if_frozen AS ifFrozen, createtime, oprtime
+    </sql>
+
+
+
+    <select id="loadUserTotalCount" resultType="java.util.Map">
+        select if(count(id) = 0,1,count(id)) totalCount from biz_user where 1 =1
+        <if test="type == 'day'">
+            and createtime>DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 DAY)
+        </if>
+        <if test="type == 'month'">
+            and createtime>DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 MONTH)
+        </if>
+        <if test="type == 'year'">
+            and createtime>DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 YEAR)
+        </if>
+    </select>
+
+    <select id="loadUserBeforeTotalCount" resultType="java.util.Map">
+        select if(count(id) = 0,1,count(id)) totalCount from biz_user where 1 =1
+        <if test="type == 'day'">
+            and createtime &lt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 DAY) and createtime &gt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 2 DAY)
+        </if>
+        <if test="type == 'month'">
+            and createtime &lt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 MONTH) and createtime &gt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 2 MONTH)
+        </if>
+        <if test="type == 'year'">
+            and createtime &lt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 YEAR) and createtime &gt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 2 YEAR)
+        </if>
+    </select>
+
+</mapper>

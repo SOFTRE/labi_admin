@@ -1,0 +1,44 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="newsInfoForm">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+            	<div class="form-group col-sm-12">
+	                <div class="col-sm-10">
+                        <#input id="title" name="标题" underline="false" value="${item.title}" maxLength="80"/>
+                        <#input id="seqNum" name="排序" underline="false" value="${item.seqNum}" maxLength="2"/>
+                        <!--
+                        <#input id="hrefUrl" name="链接地址" underline="false" value="${item.hrefUrl}" maxLength="200"/>
+                        -->
+                        <#input id="description" name="简介" underline="false" value="${item.description}" maxLength="500"/>
+
+                        <#avatar id="img" name="缩略图" underline="false" avatarImg="${item.img}" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸690px*226px)"/>
+                        <#avatar id="smallImg" name="列表小缩略图" avatarImg="${item.smallImg}" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸180px*140px)"/>
+                        <!--
+                        <#moreImg id="moreImg" name="更多图片" moreImg="${item.moreImg}" underline="false"/>
+                        -->
+                        <#radio name="redioNewsCheck" title="是否上线" hidden="ifOnline" underline="false" checked="${item.ifOnline}" />
+
+                        <#ueditor id="info" name="详情"/>
+	                			
+	                </div>
+                </div>
+                
+                
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="NewsInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="NewsInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/news/news_info.js"></script>
+@}

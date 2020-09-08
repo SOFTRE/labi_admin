@@ -1,0 +1,61 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="couponRuleInfoForm">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="ruleName" name="规则名称" underline="false"/>
+                            <#input id="couponName" name="优惠券名称" underline="false"/>
+                            <#select id="showExtendMode" name="赠送方式" hidden="extendMode" underline="false">
+                                	<option value="">请选择</option>
+									<option value="product">商城消费赠送</option>
+									<option value="coach">预约教练赠送</option>
+									<option value="course">课程报名赠送</option>
+                            </#select>
+                            
+                            <#select id="showUseMode" name="使用方式" hidden="useMode" underline="false">
+                                	<option value="">请选择</option>
+									<option value="all">通用</option>
+									<option value="product">商城消费</option>
+									<option value="coach">预约教练</option>
+									<option value="course">课程报名</option>
+                            </#select>
+                            
+                            <#input id="faceValue" name="面额" underline="false"/>
+                            <#input id="faceRule" name="面额规则" underline="false"/>
+                            <#input id="issueBeginDateTwo" name="发放开始日期" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"  underline="false"/>
+                            <#input id="issueEndDateTwo" name="发放结束日期" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"  underline="false"/>
+                            <#input id="validBeginDateTwo" name="使用开始日期" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"  underline="false"/>
+                            <#input id="validEndDateTwo" name="使用结束日期" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"  />
+                            
+                            
+                </div>
+
+                <div class="col-sm-6">
+                			<#input id="presentMinVal" name="赠送时最低消费金额" underline="false"/>
+                            <#input id="validMinVal" name="使用时最低消费金额" underline="false"/>
+                            <#input id="limitTtlQty" name="限量发行总张数" underline="false"/>
+                            <#input id="limitPerQty" name="每人限领张数" underline="false"/>
+                            <#input id="issuedTtlQty" name="已发行总张数" underline="false"/>
+                            <#input id="usedTtlQty" name="已使用总张数" underline="false"/>
+                            <#input id="numPrefix" name="编号前缀" underline="false"/>
+                            <#input id="remarks" name="备注" underline="false"/>
+                            <#radio name="redioIfOpenCheck" title="是否开启" hidden="ifOpen" underline="false" checked="T" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CouponRuleInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CouponRuleInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/couponRule/couponRule_info.js"></script>
+@}

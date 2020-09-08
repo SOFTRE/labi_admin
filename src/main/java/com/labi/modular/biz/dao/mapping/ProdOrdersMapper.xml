@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.ProdOrdersMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.ProdOrders">
+        <id column="id" property="id" />
+        <result column="order_no" property="orderNo" />
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="total_price" property="totalPrice" />
+        <result column="delivery_time" property="deliveryTime" />
+        <result column="freight" property="freight" />
+        <result column="ship_info" property="shipInfo" />
+        <result column="progress" property="progress" />
+        <result column="pay_way" property="payWay" />
+        <result column="remarks" property="remarks" />
+        <result column="createtime" property="createtime" />
+        <result column="oprtime" property="oprtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, order_no AS orderNo, user_id AS userId, user_name AS userName, total_price AS totalPrice, freight, ship_info AS shipInfo, progress, pay_way AS payWay, remarks, createtime, oprtime
+    </sql>
+    <select id="selectVideoOrdersByPage" resultType="java.util.Map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+        select o.id,o.user_name userName,o.total_price totalPrice,o.pay_way payWay,o.progress,o.createtime,o.remarks,o.order_no orderNo,d.prod_thumb_img prodThumbImg,d.prod_name prodName,d.prod_sale_price prodSalePrice from biz_prod_orders o
+        left join biz_prod_orders_dtl d on o.id=d.order_id
+        where o.if_video='T'
+        <if test="progress != null and progress !=''">
+            and o.progress=#{progress}
+        </if>
+        <if test="userId != null">
+            and o.user_id=#{userId}
+        </if>
+        <if test="condition != null and condition !=''">
+            and (instr(d.prod_name,#{condition})>0 or instr(o.user_name,#{condition})>0)
+        </if>
+        order by o.createtime desc
+    </select>
+</mapper>

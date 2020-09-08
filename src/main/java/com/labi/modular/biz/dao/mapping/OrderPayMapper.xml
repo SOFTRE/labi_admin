@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.OrderPayMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.OrderPay">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="dept_id" property="deptId"/>
+        <result column="pay_no" property="payNo"/>
+        <result column="order_id" property="orderId"/>
+        <result column="type" property="type"/>
+        <result column="total_price" property="totalPrice"/>
+        <result column="pay_way" property="payWay"/>
+        <result column="progress" property="progress"/>
+        <result column="business_number" property="businessNumber"/>
+        <result column="pay_time" property="payTime"/>
+        <result column="createtime" property="createtime"/>
+        <result column="oprtime" property="oprtime"/>
+
+
+    </resultMap>
+    <select id="loadTotalMoney" resultType="java.util.Map">
+        select if(sum(total_price) is null,0,sum(total_price)) totalMoney from biz_order_pay where progress ='paySuccess'
+        <if test="deptId != null">
+            and dept_id=#{deptId}
+        </if>
+        <if test="type == 'day'">
+            and pay_time>DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 DAY)
+        </if>
+        <if test="type == 'month'">
+            and pay_time>DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 MONTH)
+        </if>
+        <if test="type == 'year'">
+            and pay_time>DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 YEAR)
+        </if>
+    </select>
+
+    <select id="loadBeforeTotalMoney" resultType="java.util.Map">
+        select if(sum(total_price) is null,1,sum(total_price)) totalMoney from biz_order_pay where progress ='paySuccess'
+        <if test="deptId != null">
+            and dept_id=#{deptId}
+        </if>
+        <if test="type == 'day'">
+            and pay_time &lt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 DAY) and pay_time &gt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 2 DAY)
+        </if>
+        <if test="type == 'month'">
+            and pay_time &lt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 MONTH) and pay_time &gt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 2 MONTH)
+        </if>
+        <if test="type == 'year'">
+            and pay_time &lt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 YEAR) and pay_time &gt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 2 YEAR)
+        </if>
+    </select>
+
+
+
+    <select id="loadTotalCount" resultType="java.util.Map">
+        select count(id) totalNumber from biz_order_pay where progress ='paySuccess'
+        <if test="deptId != null">
+            and dept_id=#{deptId}
+        </if>
+        <if test="type == 'day'">
+            and pay_time>DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 DAY)
+        </if>
+        <if test="type == 'month'">
+            and pay_time>DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 MONTH)
+        </if>
+        <if test="type == 'year'">
+            and pay_time>DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 YEAR)
+        </if>
+    </select>
+
+    <select id="loadBeforeTotalCount" resultType="java.util.Map">
+        select if(count(id) = 0,1,count(id)) totalNumber from biz_order_pay where progress ='paySuccess'
+        <if test="deptId != null">
+            and dept_id=#{deptId}
+        </if>
+        <if test="type == 'day'">
+            and pay_time &lt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 DAY) and pay_time &gt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 2 DAY)
+        </if>
+        <if test="type == 'month'">
+            and pay_time &lt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 MONTH) and pay_time &gt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 2 MONTH)
+        </if>
+        <if test="type == 'year'">
+            and pay_time &lt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 1 YEAR) and pay_time &gt; DATE_SUB(date_format(now(),'%y-%m-%d'), INTERVAL 2 YEAR)
+        </if>
+    </select>
+
+
+    <select id="selectList" resultType="java.util.Map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+        select o.*,u.name userName,u.phone_num phoneNum,if(d.simplename is null,'总公司',d.simplename) deptName from biz_order_pay o
+        left join sys_dept d on o.dept_id=d.id
+        left join biz_user u on o.user_id=u.id
+        where o.progress = 'paySuccess'
+        <if test="deptId != null">
+            and o.dept_id=#{deptId}
+        </if>
+        <if test="businessType!=null and businessType!=''">
+            and o.type=#{businessType}
+        </if>
+        <if test="beginDate!=null and beginDate!=''">
+            and o.pay_time &gt; #{beginDate}
+        </if>
+        <if test="endDate!=null and endDate!=''">
+            and o.pay_time &lt; date_add(#{endDate}, interval 1 day)
+        </if>
+        order by o.pay_time desc
+    </select>
+</mapper>

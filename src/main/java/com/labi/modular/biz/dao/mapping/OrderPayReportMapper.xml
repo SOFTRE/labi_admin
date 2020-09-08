@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.OrderPayReportMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.pojo.OrderPayReport">
+        <result column="num" property="num"/>
+        <result column="totalPrice" property="totalPrice"/>
+        <result column="time" property="time"/>
+        <result column="businessType" property="businessType"/>
+
+    </resultMap>
+
+    <select id="selectAll" resultType="java.util.Map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+        select '全部' time, count(id) num,sum(total_price)
+        totalPrice from biz_order_pay where progress = 'paySuccess'
+        <if test="deptId != null">
+            and dept_id=#{deptId}
+        </if>
+        <if test="businessType!=null and businessType!=''">
+            and type=#{businessType}
+        </if>
+
+    </select>
+
+    <select id="selectByDay" resultType="java.util.Map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+        select date_format(pay_time, '%Y-%m-%d') time,count(id) num,sum(total_price) totalPrice from biz_order_pay where progress = 'paySuccess'
+        <if test="deptId != null">
+            and dept_id=#{deptId}
+        </if>
+        <if test="businessType!=null and businessType!=''">
+            and type=#{businessType}
+        </if>
+        <if test="beginDate!=null and beginDate!=''">
+            and pay_time &gt; #{beginDate}
+        </if>
+        <if test="endDate!=null and endDate!=''">
+            and pay_time &lt; date_add(#{endDate}, interval 1 day)
+        </if>
+        group by date_format(pay_time, '%Y-%m-%d') order by date_format(pay_time,'%Y-%m-%d') desc
+    </select>
+
+    <select id="selectByMonth" resultType="java.util.Map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+        select date_format(pay_time, '%Y-%m') time ,count(id) num,sum(total_price) totalPrice from biz_order_pay where progress = 'paySuccess'
+        <if test="deptId != null">
+            and dept_id=#{deptId}
+        </if>
+        <if test="businessType!=null and businessType!=''">
+            and type=#{businessType}
+        </if>
+        <if test="beginDate!=null and beginDate!=''">
+            and pay_time &gt; #{beginDate}
+        </if>
+        <if test="endDate!=null and endDate!=''">
+            and pay_time &lt; date_add(#{endDate}, interval 1 day)
+        </if>
+        group by date_format(pay_time, '%Y-%m') order by date_format(pay_time,'%Y-%m') desc
+    </select>
+
+    <select id="selectByCustom" resultType="java.util.Map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+        select '所选时间范围' time, count(id) num,sum(total_price)
+        totalPrice from biz_order_pay where progress = 'paySuccess'
+        <if test="deptId != null">
+            and dept_id=#{deptId}
+        </if>
+        <if test="businessType!=null and businessType!=''">
+            and type=#{businessType}
+        </if>
+        <if test="beginDate!=null and beginDate!=''">
+            and pay_time &gt; #{beginDate}
+        </if>
+        <if test="endDate!=null and endDate!=''">
+            and pay_time &lt; date_add(#{endDate}, interval 1 day)
+        </if>
+
+    </select>
+</mapper>

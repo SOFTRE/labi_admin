@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.NewsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.News">
+        <id column="id" property="id" />
+        <result column="img" property="img" />
+        <result column="small_img" property="smallImg" />
+		<result column="more_img" property="moreImg" />
+        <result column="title" property="title" />
+        <result column="description" property="description" />
+        <result column="des_file" property="desFile" />
+        <result column="video_file" property="videoFile" />
+        <result column="cover_file" property="coverFile" />
+        <result column="pv" property="pv" />
+        <result column="href_url" property="hrefUrl" />
+        <result column="type" property="type" />
+        <result column="if_online" property="ifOnline" />
+        <result column="seq_num" property="seqNum" />
+        <result column="gs_type" property="gsType" />
+        <result column="createtime" property="createtime" />
+        <result column="oprtime" property="oprtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, img,more_img AS moreImg, title, description, des_file AS desFile, video_file AS videoFile,
+        cover_file coverFile, pv, href_url AS hrefUrl, type, if_online AS ifOnline, 
+        seq_num AS seqNum,gs_type AS gsType, createtime, oprtime
+    </sql>
+
+</mapper>

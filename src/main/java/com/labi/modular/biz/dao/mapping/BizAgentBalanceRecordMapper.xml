@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.BizAgentBalanceRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.BizAgentBalanceRecord">
+        <id column="id" property="id"/>
+        <result column="agent_id" property="agentId"/>
+        <result column="balance" property="balance"/>
+        <result column="type" property="type"/>
+        <result column="left_balance" property="leftBalance"/>
+        <result column="remarks" property="remarks"/>
+        <result column="createtime" property="createtime"/>
+    </resultMap>
+
+</mapper>

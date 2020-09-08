@@ -1,0 +1,66 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>课程报名管理管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-1 search-title">
+                                <label class="search-title-label">
+                                    筛选条件：
+                                </label>
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="condition" name="学员名称" />
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                <#NameCon id="courseName" name="课程名称" />
+                            </div>
+                            
+                            <div class="col-sm-2">  
+                            <#SelectCon id="SelExtendMode" name="课程分类" hidden="courseCatId">
+	                                <option value="">请选择</option>
+		                             @for(cat in catlist){
+										<option value="${cat.id}">${cat.name}</option>
+									@}
+                            </#SelectCon>
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                <#TimeCon id="listenTime" name="上课时间" isTime="false" pattern="YYYY-MM-DD"/>
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                <#button name="搜索" icon="fa-search" clickFun="MessageSend.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="CourseOrderTableToolbar" role="group">
+                        	<#SelectCon id="sendMode" name="发送模板" hidden="templateId">
+	                                <option value="">请选择</option>
+		                             @for(msg in meslist){
+										<option value="${msg.templateId}">${msg.title}</option>
+									@}
+                            </#SelectCon>
+                             @if(shiro.hasPermission("/messageSend/alone")){
+                                <#button name="短信单发" icon="fa-remove" clickFun="MessageSend.sendAlone()" space="true"/>
+                             @}
+                           	
+                           	@if(shiro.hasPermission("/messageSend/group")){
+                                <#button name="短信群发" icon="fa-remove" clickFun="MessageSend.sendGroup()" space="true"/>
+                             @}
+                        </div>
+                        <#table id="MessageSendTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/messageSend/messageSend.js"></script>
+<script src="${ctxPath}/static/modular/biz/messageSend/messageSend_info.js"></script>
+@}

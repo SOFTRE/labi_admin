@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.CoachMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.Coach">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="name" property="name" />
+        <result column="coach_cat_id" property="coachCatId" />
+        <result column="coach_cat_name" property="coachCatName" />
+        <result column="img" property="img" />
+        <result column="more_img" property="moreImg" />
+        <result column="des_file" property="desFile" />
+        <result column="des" property="des" />
+        <result column="coach_grade_id" property="coachGradeId" />
+        <result column="coach_grade_name" property="coachGradeName" />
+        <result column="telephone" property="telephone" />
+        
+        <result column="score" property="score" />
+        <result column="total_score" property="totalScore" />
+        <result column="score_num" property="scoreNum" />
+        <result column="sale_num" property="saleNum" />
+        
+        
+        <result column="seq_num" property="seqNum" />
+        <result column="if_recommend" property="ifRecommend" />
+        <result column="if_frozen" property="ifFrozen" />
+        <result column="type" property="type" />
+        <result column="createtime" property="createtime" />
+        <result column="oprtime" property="oprtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id AS userId, name, img, more_img AS moreImg, des_file AS desFile, des,
+        coach_cat_id AS coachCatId,coach_cat_name AS coachCatName,
+        score,total_score AS totalScore,score_num AS scoreNum,sale_num AS saleNum,
+        coach_grade_id AS coachGradeId, coach_grade_name AS coachGradeName, telephone,type, 
+        seq_num AS seqNum, if_recommend AS ifRecommend,if_frozen AS ifFrozen, createtime, oprtime
+    </sql>
+
+</mapper>

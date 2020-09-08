@@ -1,0 +1,50 @@
+.btn-default{
+	background-color: #ffffff;
+	color:#1ab394;
+	border-color: 	#1ab394;
+}
+.btn-outline.btn-default{
+	background-color: #bababa;
+	border-color: #bababa;
+	color: #FFF;
+}
+.attr-a{
+	position: relative;
+	text-align: center;
+	border-color: #e5e6e7;
+	background-color: #ccc;
+	color: #555;
+	margin-bottom: 10px;
+	width: 150px;
+}
+.attr-a.attr-check{
+	color:	#1ab394;
+	border-color: 	#1ab394;
+	background-color: #fff;
+}
+.attr-a i{
+	position: absolute;
+	right: -1px;
+	bottom:-2px;
+}
+.attr-a:focus, .attr-a:hover{
+	border-color: #1ab394;
+	color: #1ab394;
+}
+.attr-a.attr-check:focus, .attr-a.attr-check:hover{
+	color:	#1ab394;
+	border-color: 	#1ab394;
+}
+.js-sku-box input[type="number"]{
+	display: inline-block;
+	width: 15%;
+	margin-top: 0;
+}
+.sku-name {
+	font-size: 16px;
+	font-weight: bold;
+}
+.no-margin{
+	margin-left: 0!important;
+	margin-right: 0!important;
+}

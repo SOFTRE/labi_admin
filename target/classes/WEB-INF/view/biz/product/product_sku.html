@@ -1,0 +1,22 @@
+@layout("/common/_container.html"){
+<link href="${ctxPath}/static/js/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet"/>
+<link href="${ctxPath}/static/css/product-style.css" rel="stylesheet"/>
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="form-group col-sm-12 no-margin">
+                    <div class="form-group" style="margin-left: 0;">
+                        <label>商品名:</label><span id="js-sku-product-name"></span><br>
+                    </div>
+                    <div id="js-sku-box">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/js/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="${ctxPath}/static/modular/biz/product/product_sku.js"></script>
+@}

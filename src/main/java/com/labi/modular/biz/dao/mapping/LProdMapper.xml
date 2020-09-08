@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.LProductMapper">
+
+    <insert id="saveProduction" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `labi`.`biz_product` ( `cat_id`, `cat_name`,`supplier_id`, `name`, `des`, `thumb_img`, `more_img`,`exhibition_attr`,
+        `des_file`, `sale_price`, `origin_price`,`if_shelf`, `status`, `type`, `seq_num`, `createtime`, `oprtime`)
+         VALUES
+          ( #{catId}, #{catName},#{supplierId}, #{name}, #{des}, #{thumbImg}, #{moreImg},#{exhibitionAttr}, #{desFile},
+           #{salePrice}, #{originPrice}, #{ifShelf},#{status}, #{type}, #{seqNum}, #{createtime}, #{oprtime});
+    </insert>
+
+    <insert id="saveProdAttr" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `labi`.`biz_prod_attr` (`prod_id`, `attr_id`, `attr_name`, `attr_option_id`, `option_name`, `status`, `createtime`)
+        VALUES
+        (#{prodId}, #{attrId}, #{attrName}, #{attrOptionId}, #{optionName}, #{status}, #{createtime});
+    </insert>
+
+    <update id="updateProduct">
+        UPDATE `labi`.`biz_product` SET `cat_id`=#{catId}, `name`= #{name}, `des` = #{des},
+        `thumb_img` = #{thumbImg}, `more_img` = #{moreImg},`if_shelf` = #{ifShelf},`seq_num` = #{seqNum}, `cat_name` = #{catName},`oprtime` = #{oprtime}
+        WHERE  `id` = #{id};
+    </update>
+
+    <update id="updateProductAttrById">
+        UPDATE `labi`.`biz_prod_attr` SET `attr_name` = #{attrName}, `option_name` = #{optionName} WHERE  `id`= #{id};
+    </update>
+
+    <update id="updateStatusByIds">
+        UPDATE `labi`.`biz_prod_attr` SET `status` = #{status} WHERE  `prod_id` = #{productId} AND `id` not in
+        <foreach collection="attrIdList" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach> ;
+    </update>
+
+    <delete id="deleteBatch">
+        update `labi`.`biz_product` set status = 'D' where 1=1
+        and id in
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findProduct" resultType="com.labi.modular.biz.model.Product">
+        select
+        t.recommend_img,
+        t.if_free,
+        t.createtime,
+        t.seq_num,
+        t.if_recommend,
+        t.thumb_img,
+        t.more_img,
+        t.sale_num,
+        t.type,
+        t.des_file,
+        t.cat_id,
+        t.oprtime,
+        t.if_shelf,
+        t.des,
+        t.cat_name,
+        t.if_video,
+        t.name,
+        t.id,
+        t.status
+        from  `labi`.`biz_product` t
+        where 1 = 1
+
+        <if test=" type != null ">
+            and t.type = #{type}
+        </if>
+
+        <if test=" catId != null ">
+            and t.cat_id like CONCAT('%',#{catId},'%')
+        </if>
+
+        <if test=" ifRecommend != null ">
+            and t.if_recommend = #{ifRecommend}
+        </if>
+
+        <if test=" name != null ">
+            and t.name like CONCAT('%',#{name},'%')
+        </if>
+
+        <if test=" status != null ">
+            and t.status = #{status}
+        </if>
+
+        <if test=" ifVideo != null ">
+            and t.if_video = #{ifVideo}
+        </if>
+
+        order by t.createtime desc
+
+    </select>
+    <select id="selectOneAttr" resultType="com.labi.modular.biz.model.ProdAttr">
+        SELECT `id`, `prod_id`, `attr_id`, `attr_name`, `attr_option_id`, `option_name`, `status`, `createtime` FROM `labi`.`biz_prod_attr` WHERE  `prod_id` = #{prodId} and `attr_option_id` = #{attrOptionId};
+    </select>
+
+
+</mapper>

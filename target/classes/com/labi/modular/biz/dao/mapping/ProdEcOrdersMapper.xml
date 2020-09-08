@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.ProdEcOrdersMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.ProdEcOrders">
+        <id column="id" property="id"/>
+        <result column="order_id" property="orderId"/>
+        <result column="order_dtl_id" property="orderDtlId"/>
+        <result column="reason_id" property="reasonId"/>
+        <result column="reason_name" property="reasonName"/>
+        <result column="order_no" property="ordeNo"/>
+        <result column="total_price" property="totalPrice"/>
+        <result column="dept_id" property="deptId"/>
+        <result column="user_id" property="userId"/>
+        <result column="phone_num" property="phoneNum"/>
+        <result column="user_name" property="userName"/>
+        <result column="type" property="type"/>
+        <result column="progress" property="progress"/>
+        <result column="remarks" property="remarks"/>
+        <result column="refuse_remark" property="refuseRemark"/>
+        <result column="return_remark" property="returnRemark"/>
+        <result column="createtime" property="createtime"/>
+        <result column="oprtime" property="oprtime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, order_id AS orderId, order_dtl_id AS orderDtlId,reason_id AS reasonId,
+        reason_name AS reasonName, order_no AS ordeNo,total_price AS totalPrice,
+        dept_id AS deptId,user_id AS userId,user_name AS userName,type,phone_num AS phoneNum,
+        progress,remarks,return_remark AS returnRemark,refuse_remark AS refuseRemark,createtime,oprtime
+    </sql>
+
+    <select id="getEcOrderList" resultType="map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+        select
+        ec.id, ec.order_id AS orderId, ec.order_dtl_id AS orderDtlId,ec.reason_id AS reasonId,
+        ec.reason_name AS reasonName, ec.order_no AS orderNo,ec.total_price AS totalPrice,ec.real_price AS realPrice,
+        ec.dept_id AS deptId,ec.user_id AS userId,ec.user_name AS userName,ec.type,
+        ec.phone_num AS phoneNum,ec.return_remark AS returnRemark,
+        ec.progress,ec.remarks,ec.refuse_remark AS refuseRemark,ec.createtime,ec.oprtime,
+        dtl.prod_name AS prodName,dtl.prod_sale_price AS prodSalePrice, dtl.prod_thumb_img AS prodThumbImg,dtl.buy_num
+        AS buyNmu,
+        dtl.prod_attr_info AS prodAttrInfo,u.phone_num AS userPhoneNum,log.logistics_no AS
+        logisticsNo,log.logistics_name AS logisticsName
+        from
+        (select * from biz_prod_ec_orders where 1=1
+        <if test="orderNo != null and orderNo !=''">
+            and order_no=#{orderNo}
+        </if>
+        <if test="progress != null and progress !=''">
+            and progress in (#{progress})
+        </if>
+        <if test="userName != null and userName !=''">
+            and user_name=#{userName}
+        </if>
+        <if test="deprId != null and deprId !=''">
+            and depr_id=#{deprId}
+        </if>
+        ) ec
+        LEFT JOIN biz_prod_orders_dtl dtl on ec.order_dtl_id= dtl.id
+        LEFT JOIN biz_order_logistics log on ec.id= log.order_id and log.order_type='R'
+        LEFT JOIN biz_user u on ec.user_id= u.id
+        <if test="logisticsNo != null and logisticsNo !=''">
+            where instr(log.logistics_no,#{logisticsNo})>0
+        </if>
+        ORDER BY ec.createtime desc
+    </select>
+
+</mapper>

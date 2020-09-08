@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.OrderLogisticsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.OrderLogistics">
+        <id column="id" property="id" />
+        <result column="order_id" property="orderId" />
+        <result column="logistics_name" property="logisticsName" />
+        <result column="logistics_code" property="logisticsCode" />
+        <result column="logistics_no" property="logisticsNo" />
+        <result column="createtime" property="createtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, order_id AS orderId, logistics_name AS logisticsName, logistics_code AS logisticsCode, logistics_no AS logisticsNo, createtime
+    </sql>
+    <select id="selectByOrderId" resultType="com.labi.modular.biz.model.OrderLogistics">
+        select
+        <include refid="Base_Column_List" />
+        from biz_order_logistics  where order_id = #{orderId} and order_type='S'
+    </select>
+
+</mapper>

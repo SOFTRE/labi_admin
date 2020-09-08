@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.LProductCatAttrOptionMapper">
+    <insert id="saveProdCatAttrOption">
+        INSERT INTO `labi`.`biz_prod_cat_attr_option` (`attr_id`, `option_name`, `status`, `createtime`, `oprtime`)
+        VALUES
+        (#{attrId}, #{optionName}, #{status}, #{createtime}, #{oprtime});
+    </insert>
+    <update id="updateProdCatAttrOption">
+        UPDATE `labi`.`biz_prod_cat_attr_option` SET `option_name` = #{optionName} ,`status` = #{status},`oprtime` = #{oprtime} WHERE id = #{id}
+    </update>
+    <delete id="deleteProdCatAttrOption">
+        UPDATE `labi`.`biz_prod_cat_attr_option` SET `status` = 'D' ,`oprtime` = #{oprtime} WHERE id = #{id}
+    </delete>
+
+    <select id="findProductCatAttrOptionList" resultType="com.labi.modular.biz.model.ProdCatAttrOption">
+        select
+
+        t.attr_id,
+        t.option_name,
+        t.status,
+        t.createtime,
+        t.oprtime
+        from  `labi`.`biz_prod_cat_attr_option` t
+
+        where 1 = 1
+
+        <if test=" attrId != null and attrId !='' ">
+            and t.attr_id = #{attrId}
+        </if>
+
+        <if test=" status != null and status !='' ">
+            and t.status = #{status}
+        </if>
+
+        order by t.createtime desc
+
+    </select>
+
+
+</mapper>

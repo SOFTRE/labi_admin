@@ -1,0 +1,43 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="id" value="${item.id}" underline="false"/>
+                            <#input id="userId" name="用户id" value="${item.userId}" underline="false"/>
+                            <#input id="ruleId" name="规则id" value="${item.ruleId}" underline="false"/>
+                            <#input id="couponName" name="优惠券名称" value="${item.couponName}" underline="false"/>
+                            <#input id="extendMode" name="发放方式，product(商城消费赠送)、coach(预约教练赠送)、course(课程报名赠送)" value="${item.extendMode}" underline="false"/>
+                            <#input id="useMode" name="使用方式，all(通用)、product(商城消费)、coach(预约教练)、course(课程报名)" value="${item.useMode}" underline="false"/>
+                            <#input id="ecCode" name="电子券代码" value="${item.ecCode}" underline="false"/>
+                            <#input id="faceValue" name="面额" value="${item.faceValue}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="ifUsed" name="是否使用" value="${item.ifUsed}" underline="false"/>
+                            <#input id="ifExpired" name="是否过期" value="${item.ifExpired}" underline="false"/>
+                            <#input id="validBeginDate" name="使用开始日期" value="${item.validBeginDate}" underline="false"/>
+                            <#input id="validEndDate" name="使用结束日期" value="${item.validEndDate}" underline="false"/>
+                            <#input id="validMinVal" name="使用的最低消费金额" value="${item.validMinVal}" underline="false"/>
+                            <#input id="useTime" name="使用时间" value="${item.useTime}" underline="false"/>
+                            <#input id="remarks" name="备注" value="${item.remarks}" underline="false"/>
+                            <#input id="createtime" name="创建时间" value="${item.createtime}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CouponListInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CouponListInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/couponList/couponList_info.js"></script>
+@}

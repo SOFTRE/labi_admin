@@ -1,0 +1,43 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="newsInfoForm">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-10">
+                            
+                            <#input id="title" name="标题" underline="false" maxLength="80"/>
+                            <#input id="seqNum" name="排序" underline="false" maxLength="2"/>
+                            <!--  
+                            <#input id="hrefUrl" name="链接地址" underline="false" maxLength="200"/>
+                            -->
+                            <#input id="description" name="简介" underline="false" maxLength="500"/>
+                            
+                            <#avatar id="img" name="缩略图" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸690px*226px)"/>
+                            <#avatar id="smallImg" name="列表小缩略图" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸180px*140px)"/>
+                            <!--  
+                            <#moreImg id="moreImg" name="更多图片" underline="false"/>
+                            -->
+                			<#radio name="redioNewsCheck" title="是否上线" hidden="ifOnline" underline="false" checked="T" />
+                			
+                			<#ueditor id="info" name="详情"/>
+                			
+                </div>
+
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="NewsInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="NewsInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="//imgcache.qq.com/open/qcloud/js/vod/sdk/ugcUploader.js"></script>
+<script src="${ctxPath}/static/modular/biz/news/news_info.js"></script>
+@}

@@ -1,0 +1,21 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="CourseTimeInfoForm">
+            <div class="row">
+                <div class="col-sm-12">
+                    <#input id="startTime" name="开始日期" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"   underline="false"/>
+                </div>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CourseTimeInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CourseTimeInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/course/courseTime_info.js"></script>
+@}

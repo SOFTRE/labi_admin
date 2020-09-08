@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.BannerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.Banner">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="img" property="img" />
+        <result column="type" property="type" />
+        <result column="goto_info" property="gotoInfo" />
+        <result column="if_online" property="ifOnline" />
+        <result column="position" property="position" />
+        <result column="indexes" property="indexes" />
+        <result column="seq_num" property="seqNum" />
+        <result column="gs_type" property="gsType" />
+        <result column="createtime" property="createtime" />
+        <result column="oprtime" property="oprtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, img, type, goto_info AS gotoInfo, if_online AS ifOnline, 
+        gs_type AS gsType, position,indexes, seq_num AS seqNum, createtime, oprtime
+    </sql>
+	
+	<select id="getBnnerList" resultType="map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+		select  
+		<include refid="Base_Column_List" />
+		from biz_banner where 1 = 1
+		<if test="gsType != null and gsType !=''">
+			and gs_type=#{gsType} 
+		</if>
+		
+		<if test="name != null and name !=''">
+			and name like CONCAT('%',#{name},'%')
+		</if>
+			order by createtime DESC
+	</select>
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.ProdSkuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.ProdSku">
+        <id column="id" property="id" />
+        <result column="prod_id" property="prodId" />
+        <result column="sku_num" property="skuNum" />
+        <result column="img" property="img" />
+        <result column="sale_price" property="salePrice" />
+        <result column="origin_price" property="originPrice" />
+        <result column="provide_price" property="providePrice" />
+        <result column="sale_num" property="saleNum" />
+        <result column="left_num" property="leftNum" />
+        <result column="attr_option_ids" property="attrOptionIds" />
+        <result column="attr_option_names" property="attrOptionNames" />
+        <result column="createtime" property="createtime" />
+        <result column="oprtime" property="oprtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, prod_id AS prodId, sku_num AS skuNum, img, sale_price AS salePrice, origin_price AS originPrice, provide_price AS providePrice, sale_num AS saleNum, left_num AS leftNum, attr_option_ids AS attrOptionIds, attr_option_names AS attrOptionNames, createtime, oprtime
+    </sql>
+
+</mapper>

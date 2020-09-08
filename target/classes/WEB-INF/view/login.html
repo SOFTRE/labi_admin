@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Labi - 登录</title>
+
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/animate.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <!-- <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet"> -->
+    <script>if (window.top !== window.self) {
+        window.top.location = window.location;
+    }</script>
+    <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+    <style>
+        body {
+            height: 100%;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        .box-container {
+            position: relative;
+            margin: 0 auto;
+            width: 510px;
+            max-width: 750px;
+            min-height: 750px;
+            height: 100%;
+            padding-top: 10%;
+            z-index: 100;
+        }
+
+        .box {
+            margin: 0 auto;
+            width: 434px;
+            max-width: 434px;
+            height: 448px;
+            padding: 45px 60px;
+            background-color: #fff;
+        }
+
+        .copyright {
+            position: absolute;
+            text-align: center;
+            margin: 0 auto;
+            bottom: 5%;
+            left: 0;
+            right: 0;
+            font-size: 12px;
+            color: white;
+            z-index: 100;
+        }
+
+        .bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* z-index: 50; */
+            overflow: hidden;
+            min-height: 750px;
+        }
+
+        .bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWMwNjb+z8DAwMAAAArMAZmw26AlAAAAAElFTkSuQmCC) repeat;
+            z-index: 30;
+            opacity: 1;
+        }
+
+        #video {
+            /* width: auto !important; */
+            /* height: 100% !important; */
+            min-height: 750px;
+            z-index: 20;
+        }
+
+        .btn {
+            display: block;
+            width: 100% !important;
+            background-color: #ed4040;
+        }
+
+        .m-t-lg {
+            margin-top: 30px;
+        }
+
+        .form-input {
+            /* display: block; */
+            -webkit-text-fill-color: #555;
+            caret-color: #555; /* 光标颜色 */
+            width: 100%;
+            height: 34px;
+            padding: 6px 0;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            font-size: 14px;
+            border: none;
+            border-bottom: 1px solid #e5e5e5;
+            /* border-radius: 4px; */
+            /* -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075); */
+            /* box-shadow: inset 0 1px 1px rgba(0,0,0,.075); */
+        }
+
+        :focus {
+            /* outline: -webkit-focus-ring-color auto 1px; */
+            outline: none;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        input:-webkit-autofill {
+            　-webkit-text-fill-color: #000 !important;
+            　-webkit-text-fill-color: #ffffff;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+        .checkbox label, .radio label{
+            padding-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="bg-video">
+    <video id="video" class="" autoplay loop muted webkit-playsinline="true" playsinline="true" type="video/mp4"
+           src="https://video-1256683344.cos.ap-chengdu.myqcloud.com/labi_video/lg_background.mov"></video>
+    <div class="bg"></div></div>
+<div class="box-container text-center animated fadeInDown">
+    <div class="box white-bg">
+        <img src="${ctxPath}/static/img/logo_admin.png"/>
+        <h3 class="m-t-lg">拉比天堂小程序后台管理系统</h3>
+        <form id="login_form" class="m-t-lg" role="form" action="${ctxPath}/login" method="post">
+            <div class="form-group">
+                <input type="text" name="username" class="form-input" placeholder="请输入用户名" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-input" placeholder="请输入密码" required="">
+            </div>
+            @if(tool.getKaptchaOnOff() == true){
+            <div class="form-group" style="float: left;">
+                <div class="col-sm-8" style="padding-left: 0px; padding-right: 0px;">
+                    <input class="form-control" type="text" name="kaptcha" placeholder="验证码" required="">
+                </div>
+                <div class="col-sm-4" style="padding-left: 0px; padding-right: 0px;">
+                    <img src="${ctxPath}/kaptcha" id="kaptcha" width="100%" height="100%"/>
+                </div>
+            </div>
+            @}
+            @if(isNotEmpty(tips)){
+                <div class="form-group" style="margin-bottom: 0px;">
+                    <div class="checkbox" style="margin-bottom:0;">
+                        <label style="color: red;">${tips!} </label>
+                    </div>
+                </div>
+            @}
+            <div class="form-group" style="float: left;">
+                <div class="checkbox">
+                    <label>
+                        <input id="remember" type="checkbox" value="false" name="remember" style="margin-top: 4px;">记住密码
+                    </label>
+                </div>
+            </div>
+            <button type="button" id="login_btn" class="btn btn-danger">登录</button>
+        </form>
+    </div>
+    <div class="copyright">
+        <div>
+            <div>© 2018 拉比天堂 陕ICP备18012082号</div>
+            <div>侵权举报网上有害信息举报专区儿童色情信息举报专区违法和不良信息举报：010-82716601</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        if (localStorage.LoginName) {
+            $('input[name="username"]').val(localStorage.LoginName);
+        }
+        if (localStorage.LoginPwd) {
+            $('input[name="password"]').val(localStorage.LoginPwd);
+        }
+        if (localStorage.rememberPwd == "true") {
+            $('#remember').val(localStorage.rememberPwd);
+            $('#remember').iCheck('check');
+        }
+
+        $("#kaptcha").on('click', function () {
+            $("#kaptcha").attr('src', '${ctxPath}/kaptcha?' + Math.floor(Math.random() * 100)).fadeIn();
+        });
+        setVideo();
+        $(window).resize(function (e) {
+            setVideo();
+        });
+
+        //radio初始化
+        $('#remember').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+            increaseArea: '20%' // optional
+        });
+        $(document).on('ifClicked', '#remember', function () {
+            var val = $(this).val();
+            $(this).val(val == "true" ? false : true);
+        });
+        $('#login_btn').click(function () {
+            localStorage.LoginName = $('input[name="username"]').val();
+            if ($('#remember').val() == "true") {
+                localStorage.rememberPwd = true;
+                localStorage.LoginPwd = $('input[name="password"]').val();
+            } else {
+                localStorage.rememberPwd = false;
+                localStorage.LoginPwd = '';
+            }
+            $('#login_form').submit();
+        })
+        $('input[name="username"]').bind('keyup', function(event) {
+            if (event.keyCode == "13") {
+                $('#login_btn').click();
+            }
+        });
+        $('input[name="password"]').bind('keyup', function(event) {
+            if (event.keyCode == "13") {
+                $('#login_btn').click();
+            }
+        });
+    });
+
+    function setVideo() {
+        var height = $(window).height();
+        var width = $(window).width();
+        var video_width = $("#video").width();
+        var video_height = $("#video").height();
+        $("body").height(height)
+        if (height > video_height) {
+            $("#video").width("auto");
+            $("#video").height("100%");
+        }
+        if (width > video_width) {
+            $("#video").width("100%");
+            $("#video").height("auto");
+        }
+    }
+</script>
+
+</body>
+
+</html>

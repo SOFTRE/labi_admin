@@ -1,0 +1,44 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="hidden-xs" id="ProdOrdersToolbar" role="group">
+                            <h3>商城订单记录</h3>
+                        </div>
+                        <#table id="ProdOrders"/>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="hidden-xs" id="VideoOrdersToolbar" role="group">
+                            <h3>视频订单记录</h3>
+                        </div>
+                        <#table id="VideoOrders"/>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="hidden-xs" id="CourseOrdersToolbar" role="group">
+                            <h3>报名记录</h3>
+                        </div>
+                        <#table id="CourseOrders"/>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="hidden-xs" id="CoachGradeOrdersToolbar" role="group">
+                            <h3>教练缴费记录</h3>
+                        </div>
+                        <#table id="CoachGradeOrders"/>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="hidden-xs" id="CoachReservationOrdersToolbar" role="group">
+                            <h3>教练预约记录</h3>
+                        </div>
+                        <#table id="CoachReservationOrders"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="${ctxPath}/static/modular/biz/user/user_dtl.js"></script>
+@}

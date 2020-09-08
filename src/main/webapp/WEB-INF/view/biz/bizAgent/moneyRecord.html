@@ -1,0 +1,39 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+<!--            <div class="ibox-title">
+                <h5>分销商收支记录</h5>
+            </div>-->
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-1 search-title">
+                                <label class="search-title-label">
+                                    筛选条件：
+                                </label>
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="备注" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="type" name="类型">
+                                    <option value="">全部</option>
+                                    <option value="income">收入</option>
+                                    <option value="expend">支出</option>
+                                </#SelectCon>
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="AgentMoneyRecord.search()"/>
+                            </div>
+                        </div>
+                        <#table id="AgentMoneyRecordTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/bizAgent/moneyRecord.js"></script>
+@}

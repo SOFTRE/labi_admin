@@ -1,0 +1,134 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="CoachTimeInfoForm">
+
+            <input type="hidden" id="id" value="${item.id}">
+            <input type="hidden" id="coachId" value="${item.coachId}">
+			<input type="hidden" id="shhTime" value="">
+			<input type="hidden" id="ehhTime" value="">
+			<!--  
+            <div class="row">
+                <div class="col-sm-6 b-r">
+               				<#input id="startTime" name="开始日期" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm'})" value="${strutil.formatDate(item.startTime,'yyyy-MM-dd hh:mm')}"  underline="false"/>     
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="endTime" name="结束日期" clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm'})"   value="${strutil.formatDate(item.endTime,'yyyy-MM-dd hh:mm')}" underline="false"/>
+                </div>
+            </div>
+			
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CoachTimeInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CoachTimeInfoDlg.close()"/>
+                </div>
+            </div>
+            -->
+        </div>
+          
+               
+                      
+    </div>
+    					
+    <div class="col-sm-8">
+           <div class="panel panel-default">
+               <div class="panel-heading">
+                  		 ${listcoachtime1[0].dayTime} [${listcoachtime1[0].week}]
+               </div>
+              <div class="panel-body">
+               		 @for(list1 in listcoachtime1){
+                  <button type="button" cssflg="${list1.flg}" class="btn btn-w-m 
+                  ${list1.flg==0?'btn-white':'btn-danger'}" id="${list1.dayTime}-${list1.hhmmKey}" onclick="CoachTimeInfoDlg.timtAdd('${list1.dayTime}',${list1.hhmmKey})" >${list1.hhmm}</button>
+               		@}
+                      </div> 
+           </div>
+     </div>
+	
+	<div class="col-sm-8">
+             <div class="panel panel-default">
+                 <div class="panel-heading">
+                    		 ${listcoachtime2[0].dayTime} [${listcoachtime2[0].week}]
+                 </div>
+                <div class="panel-body">
+                 		 @for(list2 in listcoachtime2){
+                    <button type="button" cssflg="${list2.flg}" class="btn btn-w-m ${list2.flg==0?'btn-white':'btn-danger'}" 
+                    id="${list2.dayTime}-${list2.hhmmKey}" onclick="CoachTimeInfoDlg.timtAdd('${list2.dayTime}',${list2.hhmmKey})" >${list2.hhmm}</button>
+                 		@}
+                        </div> 
+             </div>
+     </div>
+	
+	<div class="col-sm-8">
+             <div class="panel panel-default">
+                 <div class="panel-heading">
+                    		 ${listcoachtime3[0].dayTime} [${listcoachtime3[0].week}]
+                 </div>
+                <div class="panel-body">
+                 		 @for(list3 in listcoachtime3){
+                    <button type="button" cssflg="${list3.flg}" class="btn btn-w-m ${list3.flg==0?'btn-white':'btn-danger'}" 
+                    id="${list3.dayTime}-${list3.hhmmKey}" onclick="CoachTimeInfoDlg.timtAdd('${list3.dayTime}',${list3.hhmmKey})" >${list3.hhmm}</button>
+                 		@}
+                        </div> 
+             </div>
+     </div>
+     
+     <div class="col-sm-8">
+             <div class="panel panel-default">
+                 <div class="panel-heading">
+                    		 ${listcoachtime4[0].dayTime} [${listcoachtime4[0].week}]
+                 </div>
+                <div class="panel-body">
+                 		 @for(list4 in listcoachtime4){
+                    <button type="button" cssflg="${list4.flg}" class="btn btn-w-m ${list4.flg==0?'btn-white':'btn-danger'}" 
+                    id="${list4.dayTime}-${list4.hhmmKey}" onclick="CoachTimeInfoDlg.timtAdd('${list4.dayTime}',${list4.hhmmKey})" >${list4.hhmm}</button>
+                 		@}
+                        </div> 
+             </div>
+     </div>
+     
+     <div class="col-sm-8">
+             <div class="panel panel-default">
+                 <div class="panel-heading">
+                    		 ${listcoachtime5[0].dayTime} [${listcoachtime5[0].week}]
+                 </div>
+                <div class="panel-body">
+                 		 @for(list5 in listcoachtime5){
+                    <button type="button" cssflg="${list5.flg}" class="btn btn-w-m ${list5.flg==0?'btn-white':'btn-danger'}" 
+                    id="${list5.dayTime}-${list5.hhmmKey}" onclick="CoachTimeInfoDlg.timtAdd('${list5.dayTime}',${list5.hhmmKey})" >${list5.hhmm}</button>
+                 		@}
+                        </div> 
+             </div>
+     </div>
+     
+     <div class="col-sm-8">
+             <div class="panel panel-default">
+                 <div class="panel-heading">
+                    		 ${listcoachtime6[0].dayTime} [${listcoachtime6[0].week}]
+                 </div>
+                <div class="panel-body">
+                 		 @for(list6 in listcoachtime6){
+                    <button type="button" cssflg="${list6.flg}" class="btn btn-w-m ${list6.flg==0?'btn-white':'btn-danger'}" 
+                    id="${list6.dayTime}-${list6.hhmmKey}" onclick="CoachTimeInfoDlg.timtAdd('${list6.dayTime}',${list6.hhmmKey})" >${list6.hhmm}</button>
+                 		@}
+                        </div> 
+             </div>
+     </div>
+     
+     <div class="col-sm-8">
+             <div class="panel panel-default">
+                 <div class="panel-heading">
+                    		 ${listcoachtime7[0].dayTime} [${listcoachtime7[0].week}]
+                 </div>
+                <div class="panel-body">
+                 		 @for(list7 in listcoachtime7){
+                    <button type="button" cssflg="${list7.flg}" class="btn btn-w-m ${list7.flg==0?'btn-white':'btn-danger'}" 
+                    id="${list7.dayTime}-${list7.hhmmKey}" onclick="CoachTimeInfoDlg.timtAdd('${list7.dayTime}',${list7.hhmmKey})" >${list7.hhmm}</button>
+                 		@}
+                        </div> 
+             </div>
+     </div>
+     
+</div>
+<script src="${ctxPath}/static/modular/biz/coachTime/coachTime_info.js"></script>
+@}

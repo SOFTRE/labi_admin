@@ -1,0 +1,37 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>上课时间管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-1 search-title">
+                                <label class="search-title-label">
+                                    筛选条件：
+                                </label>
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="coachName" name="教练名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="CoachTime.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="CoachTimeTableToolbar" role="group">
+                            @if(shiro.hasPermission("/CoachTime/update")){
+                                <#button name="修改教练时间" icon="fa-edit" clickFun="CoachTime.openCoachTimeDetail()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="CoachTimeTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/coachTime/coachTime.js"></script>
+@}

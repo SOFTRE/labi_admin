@@ -1,0 +1,53 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="couresInfoForm">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-10">
+                			
+                            <!-- <#input id="id" name="主键id" value="${item.id}" underline="false"/>
+                            <#input id="orderNo" name="订单号" value="${item.orderNo}" underline="false"/>
+                            <#input id="userId" name="学员id" value="${item.userId}" underline="false"/>
+                            <#input id="userName" name="学员名称" value="${item.userName}" underline="false"/>
+                            <#input id="courseName" name="课程名称" value="${item.courseName}" underline="false"/>
+                            <#input id="courseDes" name="课程简介" value="${item.courseDes}" underline="false"/>
+                            <#input id="courseImg" name="缩略图" value="${item.courseImg}" underline="false"/>
+                            <#input id="listenT" name="开始日期" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${strutil.formatDate(item.listenTime,'yyyy-MM-dd')}"  underline="false"/>	
+							<#input id="adjustListenT" name="调整后日期" clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${strutil.formatDate(item.adjustListenTime,'yyyy-MM-dd')}"  underline="false"/>
+							-->
+							
+							<#select id="selectadjustListenT" name="上课时间调整" hidden="adjustListenT" underline="false">
+                                <option value="" data-id="">请选择</option>
+                                @for(time in listtime){
+									<option value="${time.id}">${strutil.formatDate(time.startTime,'yyyy-MM-dd')}</option>
+								@}
+                            </#select>
+                </div>
+				
+                <div class="col-sm-10">
+                            <!-- <#input id="courseCatId" name="分类id" value="${item.courseCatId}" underline="false"/>
+                            <#input id="courseCatName" name="分类名称" value="${item.courseCatName}" underline="false"/>
+                            <#input id="totalPrice" name="总价" value="${item.totalPrice}" underline="false"/>
+                            <#input id="progress" name="订单进度" value="${item.progress}" underline="false"/>
+                            <#input id="payWay" name="支付方式" value="${item.payWay}" underline="false"/>
+                            <#input id="remarks" name="备注信息" value="${item.remarks}" underline="false"/>
+                            <#input id="createtime" name="创建时间" value="${item.createtime}" underline="false"/>
+                            <#input id="oprtime" name="操作时间" value="${item.oprtime}" /> -->
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-3 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CourseOrderInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CourseOrderInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/courseOrder/courseOrder_info.js"></script>
+@}

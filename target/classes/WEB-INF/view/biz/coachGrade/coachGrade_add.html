@@ -1,0 +1,40 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="CoachGradeInfoForm">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-10">
+                    <#input id="name" name="等级名称" underline="false" maxLength="20"/>
+                    <#input id="title" name="标题" underline="false" maxLength="20"/>
+                    <#avatar id="img" name="等级缩略图" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸180px*140px)"/>
+                    <#input id="price" name="价格" underline="false" maxLength="7"/>
+                    <#input id="coachNum" name="预约次数" underline="false" maxLength="2"/>
+
+                    <#input id="seqNum" name="排序" maxLength="3"/>
+                    <#input id="des" name="描述" maxLength="200"/>
+                    <#ueditor id="info" name="教练详情"/>
+                    <!--
+                    <#avatar id="img" name="图片" underline="false"/>
+                    <#moreImg id="moreImg" name="更多图片"  underline="false"/>
+                    -->
+                </div>
+
+               
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CoachGradeInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CoachGradeInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="//imgcache.qq.com/open/qcloud/js/vod/sdk/ugcUploader.js"></script>
+<script src="${ctxPath}/static/modular/biz/coachGrade/coachGrade_info.js"></script>
+@}

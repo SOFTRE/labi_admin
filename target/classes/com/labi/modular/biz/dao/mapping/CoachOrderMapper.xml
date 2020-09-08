@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labi.modular.biz.dao.CoachOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.labi.modular.biz.model.CoachOrder">
+        <id column="id" property="id" />
+        <result column="order_no" property="orderNo" />
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="coach_id" property="coachId" />
+        <result column="coach_name" property="coachName" />
+        <result column="coach_img" property="coachImg" />
+        <result column="coach_grade_id" property="coachGradeId" />
+        <result column="coach_grade_name" property="coachGradeName" />
+        <result column="coach_grade_img" property="coachGradeImg" />
+        <result column="coach_num" property="coachNum" />
+        <result column="use_num" property="useNum" />
+        <result column="total_price" property="totalPrice" />
+        <result column="progress" property="progress" />
+        <result column="pay_way" property="payWay" />
+        <result column="remarks" property="remarks" />
+        <result column="type" property="type" />
+        <result column="createtime" property="createtime" />
+        <result column="oprtime" property="oprtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, order_no AS orderNo, user_id AS userId, user_name AS userName, 
+        coach_grade_id AS coachGradeId, coach_grade_name AS coachGradeName, 
+        coach_grade_img AS coachGradeImg, coach_num AS coachNum,type, 
+        use_num AS useNum, total_price AS totalPrice, progress,
+        pay_way AS payWay, remarks, createtime, oprtime
+    </sql>
+
+</mapper>

@@ -1,0 +1,45 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="ProdOrdersInfoForm">
+            <input type="hidden" id="orderId" value="${prodOrdersId}">
+            <div class="row">
+                <div class="col-sm-12 b-r">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">快递公司</label>
+                        <div class="col-sm-9">
+                            <input class="radio" width='200px' type="radio" name="wuliu" checked="checked" value="SF"><label>顺丰快递</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="STO"><label>申通快递</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="ZTO"><label>中通快递</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="YTO"><label>圆通快递</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="YD"><label>韵达快递</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="HTKY"><label>百世快递</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="YZPY"><label>邮政平邮</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="HHTT"><label>天天快递</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="JD"><label>京东快递</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="QFKD"><label>全峰快递</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="GTO"><label>国通快递</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="UC"><label>优速快递</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="DBL"><label>德邦快递</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="ANE"><label>安能物流</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="EMS"><label>EMS</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="ZJS"><label>宅急送</label>&nbsp;&nbsp;&nbsp;
+                            <input class="radio" width='200px' type="radio" name="wuliu" value="-1"><label>自提</label>&nbsp;&nbsp;&nbsp;
+                        </div>
+                    </div>
+                    <#input id="logisticsNo" name="快递单号" underline="false"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ProdOrdersInfoDlg.deliverySubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ProdOrdersInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/prodOrders/prodOrders_info.js"></script>
+@}

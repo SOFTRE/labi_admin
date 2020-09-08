@@ -1,0 +1,52 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="couresInfoForm">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-10">
+                            <#input id="name" name="课程名称" underline="false" maxLength="20"/>
+                            <#input id="des" name="课程简介" underline="false" maxLength="200"/>
+                            <#avatar id="img" name="课程图片" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸180px*140px)"/>
+                            <#moreImg id="moreImg" name="更多图片" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸750px*560px)"/>
+                             
+                            <#input id="classPrefix" name="班级前缀名" underline="false" maxLength="20"/>
+                			<input id="courseCatName" name="courseCatName" value="" type="hidden"/>
+                            <#select id="courseCatLeve" name="课程分类" hidden="courseCatId" underline="false">
+                                <option value="">请选择</option>
+                                @for(courseCat in coursecatlist){
+									<option value="${courseCat.id}">${courseCat.name}</option>
+								@}
+                            </#select>
+                            
+                            <#input id="price" name="课程价格(元)" underline="false" maxLength="9"/>
+                            <#input id="seqNum" name="课程排序" underline="false" maxLength="3"/>
+                            <#input id="maxNum" name="最大报名数" underline="false" maxLength="3"/>
+                            
+                            <#radio name="redioIfRecommendCheck" title="是否推荐" hidden="ifRecommend" underline="false" checked="T" />
+                            <#radio name="redioIfShelfCheck" title="是否上架" hidden="ifShelf" underline="false" checked="T" />
+                            
+                            <#ueditor id="info" name="课程详情"/>
+                            
+                </div>
+
+               
+            
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CourseInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CourseInfoDlg.close()"/>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+<script src="//imgcache.qq.com/open/qcloud/js/vod/sdk/ugcUploader.js"></script>
+<script src="${ctxPath}/static/modular/biz/course/course_info.js"></script>
+@}

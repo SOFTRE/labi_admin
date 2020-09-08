@@ -1,0 +1,48 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="coachInfoForm">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-10">
+                    <#input id="name" name="教练姓名" value="${item.name}" underline="false" maxLength="20"/>
+                    <#select id="coachLeve" name="教练等级" hidden="coachGradeId" underline="false">
+                        <option value="" data-id="${item.coachGradeId}">请选择</option>
+                        @for(grades in gradeslist){
+                            <option value="${grades.id}">${grades.name}</option>
+                        @}
+                    </#select>
+                    <#select id="coachCatLeve" name="教练分类" hidden="coachCatId" underline="false">
+                        <option value="" data-id="${item.coachCatId}">请选择</option>
+                        @for(coachCat in coachcatlist){
+                            <option value="${coachCat.id}">${coachCat.name}</option>
+                        @}
+                    </#select>
+                    <#input id="price" name="价格" value="${item.price}" underline="false" maxLength="7"/>
+                    <#input id="telephone" name="内部电话" value="${item.telephone}" underline="false" maxLength="11"/>
+                    <#input id="seqNum" name="教练排序" value="${item.seqNum}" underline="false" maxLength="3"/>
+                    <#input id="des" name="教练简介"  value="${item.des}" underline="false" maxLength="500"/>
+                    <#radio name="redFrozenioCheck" title="是否冻结" hidden="ifFrozen" underline="false" checked="${item.ifFrozen}" />
+                    <#radio name="redRecommendCheck" title="是否推荐" hidden="ifRecommend" underline="false" checked="${item.ifRecommend}" />
+                    <#avatar id="img" name="教练缩略图" avatarImg="${item.img}"  underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸320px*234px)"/>
+                    <#moreImg id="moreImg" name="更多图片" moreImg="${item.moreImg}" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸750px*560px)"/>
+
+                    <#ueditor id="info" name="教练详情"/>
+                </div>
+                 
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CoachInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CoachInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/coach/coach_info.js"></script>
+@}

@@ -1,0 +1,56 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>报表管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <#SelectCon id="type" name="查询类型">
+                                    <option value="all">全部</option>
+                                    <option value="day">按日查询</option>
+                                    <option value="month">按月查询</option>
+                                </#SelectCon>
+                            </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="businessType" name="业务类型">
+                                    <option value="">全部</option>
+                                    <option value="coach">教练预约</option>
+                                    <option value="course">课程报名</option>
+                                    <option value="prod">商城</option>
+                                    <option value="video">视频</option>
+                                </#SelectCon>
+                            </div>
+                            @if(shiro.hasPermission("/report/orderpay/list/company")){
+                                <div class="col-sm-2">
+                                    <#SelectCon id="deptId" name="公司">
+                                        <option value="">全部</option>
+                                        @for(dept in depts){
+                                            <option value="${dept.id}">${dept.simplename}</option>
+                                        @}
+                                    </#SelectCon>
+                                </div>
+                            @}
+                            <div class="col-sm-2">
+                                <#TimeCon id="beginDate" name="开始时间" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#TimeCon id="endDate" name="结束时间" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#button name="搜索" icon="fa-search" clickFun="OrderPay.search()"/>
+                            </div>
+                        </div>
+                        <#table id="OrderPayTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/report/orderPay.js"></script>
+@}

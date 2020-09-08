@@ -1,0 +1,52 @@
+@layout("/common/_container.html"){
+<link href="${ctxPath}/static/js/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet"/>
+<link href="${ctxPath}/static/css/product-style.css" rel="stylesheet"/>
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="productInfoForm">
+
+            <div class="row">
+                <div class="col-sm-10">
+                    <#input id="name" name="商品名称" underline="false"/>
+                    <#input id="des" name="商品简介" underline="false"/>
+                    <#avatar id="thumbImg" name="商品缩略图" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸320px*234px)"/>
+                    <#moreImg id="moreImg" name="更多图片" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸750px*560px)"/>
+                    
+                    <#select id="js-cat-select" name="选择一级分类" underline="false" changeFun="ProductInfoDlg.createCatSub()">
+                        <option value="">请选择</option>
+                        @for(cat in cats){
+                        <option value="${cat.id}">${cat.catName}</option>
+                        @}
+                    </#select>
+                    <#select id="js-cat-sub-select" name="选择二级分类" hidden="catId" underline="false" changeFun="ProductInfoDlg.createAttr()">
+                        <option value="">请选择</option>
+                    </#select>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label head-scu-label">选择销售属性</label>
+                        <div id="goods-attr"  class="col-sm-9">
+                        </div>
+                    </div>
+
+                    <#radio name="redioIfShelfCheck" title="是否上线" hidden="ifShelf" underline="false" checked="F" />
+                    <#input id="seqNum" type="number" name="商品排序" underline="false"/>
+                    
+                    
+                    <#ueditor id="info" name="商品详情"/>
+                    
+                </div>
+ 
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ProductInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ProductInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/js/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="${ctxPath}/static/modular/biz/product/product_info.js"></script>
+@}

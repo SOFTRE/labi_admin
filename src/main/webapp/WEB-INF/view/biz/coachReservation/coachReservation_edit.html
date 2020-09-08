@@ -1,0 +1,40 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键id" value="${item.id}" underline="false"/>
+                            <#input id="orderId" name="订单id" value="${item.orderId}" underline="false"/>
+                            <#input id="userId" name="学员id" value="${item.userId}" underline="false"/>
+                            <#input id="userName" name="学员名称" value="${item.userName}" underline="false"/>
+                            <#input id="coachId" name="教练id" value="${item.coachId}" underline="false"/>
+                            <#input id="coachName" name="教练名称" value="${item.coachName}" underline="false"/>
+                            <#input id="coachImg" name="教练缩略图" value="${item.coachImg}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="judgeLevel" name="评价星级" value="${item.judgeLevel}" underline="false"/>
+                            <#input id="feedbackContent" name="反馈内容" value="${item.feedbackContent}" underline="false"/>
+                            <#input id="ifFinish" name="是否完成:    F:否,  T:是" value="${item.ifFinish}" underline="false"/>
+                            <#input id="ifFeedback" name="是否反馈:    F:否,  T:是" value="${item.ifFeedback}" underline="false"/>
+                            <#input id="createtime" name="创建时间" value="${item.createtime}" underline="false"/>
+                            <#input id="oprtime" name="操作时间" value="${item.oprtime}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CoachReservationInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CoachReservationInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/coachReservation/coachReservation_info.js"></script>
+@}

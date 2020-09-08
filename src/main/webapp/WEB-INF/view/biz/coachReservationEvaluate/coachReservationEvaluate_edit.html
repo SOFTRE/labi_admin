@@ -1,0 +1,89 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="bannerInfoForm">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-10">
+                            <#input id="name" name="名称" value="${item.name}" underline="false"/>
+                            
+                            <#select id="position" name="所属模块" underline="false">
+                                <option value="0">请选择</option>
+	                            <option value="1" 
+	                            @if(item.position == 1){
+	                                selected ="selected"
+	                            @}
+	                            >首页</option>
+	                            <option value="2"
+	                            @if(item.position == 2){
+	                                selected ="selected"
+	                            @}
+	                            >课程报名</option>
+	                            <option value="3"
+	                            @if(item.position == 3){
+	                                selected ="selected"
+	                            @}
+	                            >预约教练</option>
+	                            <option value="4"
+	                            @if(item.position == 4){
+	                                selected ="selected"
+	                            @}
+	                            >拉比展示</option>
+	                            <option value="5"
+	                            @if(item.position == 5){
+	                                selected ="selected"
+	                            @}
+	                            >在线直播</option>
+                            </#select>
+                            
+                             <#select id="type" name="类型" underline="false">
+                                <option value="">请选择</option>
+	                            <option value="coach" ${item.type=="coach"?"selected ='selected'"} >教练</option>
+	                             <option value="product" ${item.type=="product"?"selected ='selected'"} >商品</option>
+	                             <option value="course" ${item.type=="course"?"selected ='selected'"} >课程</option>
+	                             <option value="video" ${item.type=="video"?"selected ='selected'"} >视频课程</option>
+                            </#select>
+                             
+                             <!--  
+                            <#input id="Keyword" name="查询关键字" underline="false"/>
+                            <#button name="搜索" icon="fa-search" clickFun="BannerInfoDlg.jumpSearch()"/>
+                            -->
+                            
+                            <#inputSearch id="Keyword" name="查询关键字" clickFun="BannerInfoDlg.jumpSearch()" underline="false" placeholder="请输入关键字检索"/>
+                            
+                            <#select id="gotoInfo" name="详情数据" underline="false" >
+                            		<option value="">请选择</option>
+									<option value="${item.gotoInfo}" selected ="selected">${item.infoDes}</option>
+                            </#select>
+                            
+                            
+                            <#select id="indexes" name="banner位置" underline="false">
+                                <option value="">请选择</option>
+                                 <option value="1"  ${item.indexes==1?"selected ='selected'"}>顶部</option>
+	                             <option value="2"  ${item.indexes==2?"selected ='selected'"}>最新课程</option>
+	                             <option value="3"  ${item.indexes==3?"selected ='selected'"}>最新书籍</option>
+	                             <option value="4"  ${item.indexes==4?"selected ='selected'"}>经典个案</option>
+                            </#select>
+                            
+                            <#input id="seqNum" name="排序" value="${item.seqNum}" underline="false"/>
+                            <#radio name="redioCheck" title="是否上线" hidden="ifOnline" underline="false" checked="${item.ifOnline}" />
+                            <#avatar id="img" name="图片" avatarImg="${item.img}" underline="false"/>
+                </div>
+
+                 
+            </div>
+
+            <div class="row btn-group-m-t">
+				<div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="BannerInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="BannerInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/banner/banner_info.js"></script>
+@}

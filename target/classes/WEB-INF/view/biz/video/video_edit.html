@@ -1,0 +1,48 @@
+@layout("/common/_container.html"){
+<link href="${ctxPath}/static/js/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet"/>
+<link href="${ctxPath}/static/css/product-style.css" rel="stylesheet"/>
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="productInfoForm">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-10">
+                
+                    <#input id="name" name="在线课程名称" value="${item.name}" underline="false"/>
+                    <#input id="des" name="简介" underline="false" value="${item.des}" maxLength="500"/>
+                    <#avatar id="thumbImg" name="在线课程缩略图" avatarImg="${item.thumbImg}" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸180px*140px)"/>
+                    <#moreImg id="moreImg" name="更多图片" moreImg="${item.moreImg}" underline="false" tip="(建议3M以内的JPG/JPEG/BMP/PNG格式图片，建议图片尺寸750px*560px)"/>
+
+                    <#select id="catId" name="选择分类" underline="false">
+                        <option value="" data-id="${item.catId}">请选择</option>
+                        @for(cat in cats){
+                        <option value="${cat.id}">${cat.name}</option>
+                        @}
+                    </#select>
+
+                    <#radio name="redioIfFreeCheck" title="是否免费" hidden="ifFree" underline="false" checked="${item.ifFree}" />
+                    <#input id="salePrice" value="${item.salePrice}" name="销售价格" underline="false"/>
+                    <#input id="originPrice" value="${item.originPrice}" name="原价" underline="false"/>
+                    <#radio name="redioIfShelfCheck" title="是否上线" hidden="ifShelf" checked="${item.ifShelf}" underline="false"/>
+                    <#input id="seqNum" type="number" name="排序" value="${item.seqNum}" underline="false"/>
+                    
+                    <#ueditor id="info" name="在线课程详情"/>
+                    
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ProductInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ProductInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/js/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="${ctxPath}/static/modular/biz/video/video_info.js"></script>
+@}

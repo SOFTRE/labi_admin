@@ -1,0 +1,44 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键id" underline="false"/>
+                            <#input id="orderNo" name="订单号" underline="false"/>
+                            <#input id="userId" name="学员id" underline="false"/>
+                            <#input id="userName" name="学员名称" underline="false"/>
+                            <#input id="courseName" name="课程名称" underline="false"/>
+                            <#input id="courseDes" name="课程简介" underline="false"/>
+                            <#input id="courseImg" name="缩略图" underline="false"/>
+                            <#input id="listenTime" name="上课日期" underline="false"/>
+                            <#input id="adjustListenTime" name="调整后上课日期(学员上课时间以该字段为准)"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="courseCatId" name="分类id" underline="false"/>
+                            <#input id="courseCatName" name="分类名称" underline="false"/>
+                            <#input id="totalPrice" name="总价" underline="false"/>
+                            <#input id="progress" name="订单进度：waitPay(待支付)、waitListen(待听课)、finish(已完成)" underline="false"/>
+                            <#input id="payWay" name="支付方式：wx（微信支付）、ali（支付宝）、unionPay(银联支付)" underline="false"/>
+                            <#input id="remarks" name="备注信息" underline="false"/>
+                            <#input id="createtime" name="创建时间" underline="false"/>
+                            <#input id="oprtime" name="操作时间" underline="false"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12 col-sm-offset-5">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CourseOrderInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CourseOrderInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/biz/courseOrder/courseOrder_info.js"></script>
+@}
